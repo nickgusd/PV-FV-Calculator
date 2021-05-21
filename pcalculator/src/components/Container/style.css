@@ -1,0 +1,10 @@
+.container {
+    border: 1px solid black;
+    height: 100vh;
+}
+
+#calculation {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}
