@@ -32,15 +32,17 @@ export default function Calculator({ option }) {
         return numberWithCommas(fv.toFixed(2))
     }
 
-    const getPayment = (presentValue, futureValue, interest, periods) => {
+    const getPayment = (presentValue, interest, periods) => {
         // (PV x ((PV + FV) ÷ ((1 + r)n-1)) x (-r ÷ (1 + b))
-
+        let pmt = (presentValue* (interest/12)) / (1 - (1 + (interest/12))^(-periods*12))
 
         // let pmt = (presentValue * ((presentValue + futureValue)) / ((1 + interest) ** periods-1)) * (-interest + (1 + 0))
-        let pmt = (presentValue + ((presentValue + futureValue) / ((1 + interest) ** periods - 1)) * (-interest / (1 + interest)))
+        // let pmt = (interest * presentValue)/ 1 - ((1 + interest) ** -periods)
 
         return pmt
     }
+ 
+    console.log(getPayment(100000, .07, 5))
 
     // const getRate = (presentValue, futureValue, interest, periods) => {
     //     let pv = futureValue/ (1 + interest) ** periods
