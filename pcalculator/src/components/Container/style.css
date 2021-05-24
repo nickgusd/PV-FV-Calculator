@@ -1,6 +1,6 @@
 .container {
-    border: 1px solid black;
     height: 100vh;
+    overflow: hidden;
 }
 
 #calculation {

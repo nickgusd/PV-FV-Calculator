@@ -3,9 +3,10 @@
     width: 40vw;
     display: block;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     border: 1px solid black;
-    background: blue;
+    border-radius: 6px;
+    background: #0b4f6c;
     color: white;
 }
 
@@ -22,4 +23,12 @@ input {
 
 .button {
     margin-bottom: 20px;
+    background-color: #ef5750;
+    height: 25px;
+    width: 100px;
+    border: none;
+    color: #fff;
+    border-radius: 7px;
+    /* margin: 0 13px; */
+    font-size: 16px;
 }
