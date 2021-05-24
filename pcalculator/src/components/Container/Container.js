@@ -5,7 +5,7 @@ import "./style.css"
 
 export default function Container() {
 
-    const [type, setType] = useState(null)
+    const [type, setType] = useState("present value")
 
     const handleChange = (event) => {
         const {value} = event.target
