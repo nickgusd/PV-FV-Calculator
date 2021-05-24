@@ -1,6 +1,6 @@
 .calculator {
     text-align: center;
-    width: 40vw;
+    width: 30vw;
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -17,7 +17,7 @@
 }
 
 input {
-    width: 200px;
+    width: 180px;
     margin: 15px;
 }
 
