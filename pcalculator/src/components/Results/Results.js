@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "./style.css"
-import Calculator from "../Calculator/Calculator";
 
 export default function Results ({calculation, option, isCalculated}) {
 
@@ -12,7 +11,12 @@ export default function Results ({calculation, option, isCalculated}) {
             <div className="results">
                 {choices.map((item, idx) => {
                     if (item === option && isCalculated) {
-                        return <b>{option} ${calculation}</b>
+
+                        if (option === "interest rate") {
+                            return <b>{option} %{calculation}</b>
+                        } else {
+                            return <b>{option} ${calculation}</b>
+                        }
                     }
                 })}
                 
