@@ -14,7 +14,6 @@ export default function Container() {
 
     return (
         <div className="container">
-            {/* <label htmlFor="calculation">Choose an option</label> */}
             <select name="calculation" id="calculation" onChange={handleChange}>
                 <option value="present value">PV</option>
                 <option value="future value">FV</option>

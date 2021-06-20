@@ -135,6 +135,7 @@ export default function Calculator({ option }) {
         } else {
             setCalculate((rate * 100).toFixed(2))
         }
+        
         setIsCalculated(true)
     }
 
