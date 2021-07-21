@@ -1,10 +1,6 @@
-import React from "react";
+import styled from 'styled-components';
 
-import styled, { css } from "styled-components";
-
-export default function Navbar() {
-
-const Nav = styled.div`
+export const Nav = styled.div`
     height: 50px;
     width: 100vw;
     background-color: #0b4f6c;
@@ -16,18 +12,9 @@ const Nav = styled.div`
     align-items: center;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
     font-size: 18px;
     font-family: "Titillium Web",sans-serif;
     font-weight: bold;
     padding-left: 20px;
 `;
-
-    return (
-            <Nav>
-                <Title>
-                    Financial Calculator
-                </Title>
-            </Nav>
-    )
-}

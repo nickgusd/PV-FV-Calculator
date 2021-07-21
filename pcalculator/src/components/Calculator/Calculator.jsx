@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Results from "../Results/Results"
-import "./style.css"
+import Results from "../Results/Results.jsx";
+import {
+    CalcWrapper,
+    Button,
+    Input,
+    Label,
+    InputContainer
+} from "./Calculator.style";
+
 
 export default function Calculator({ option }) {
 
@@ -157,23 +164,21 @@ export default function Calculator({ option }) {
         }
     }
 
-    if (option === "present value") {
+    if (option === "PV") {
         return (
-            <div className="calculator">
+            <CalcWrapper>
                 <h1>PV Calculator</h1>
-                <div className="input-container">
-                    <label for="fv">FV</label>
-                    <input type="text" id="fv" value={futureValue} onChange={handleChangeFV} />
-                    <label for="interest">interest</label>
-                    <input type="text" id="interest" value={interest} onChange={handleChangeInterest} />
-                    <label for="periods">periods</label>
-                    <input type="text" id="periods" value={periods} onChange={handleChangePeriods} />
-                </div>
-                <div>
-                    {isCalculated ? <button className="button" onClick={handleClear}>Clear</button> : <button className="button" onClick={handleClick}>Calculate</button>}
-                </div>
+                <InputContainer>
+                    <Label for="fv">FV</Label>
+                    <Input type="text" id="fv" value={futureValue} onChange={handleChangeFV} />
+                    <Label for="interest">interest</Label>
+                    <Input type="text" id="interest" value={interest} onChange={handleChangeInterest} />
+                    <Label for="periods">periods</Label>
+                    <Input type="text" id="periods" value={periods} onChange={handleChangePeriods} />
+                    </InputContainer>               
+                    {isCalculated ? <Button className="button" onClick={handleClear}>Clear</Button> : <Button className="button" onClick={handleClick}>Calculate</Button>}
                 <Results calculation={calculate} option={option} isCalculated={isCalculated} />
-            </div>
+                </CalcWrapper>
         )
     } else if (option === "future value") {
         return (

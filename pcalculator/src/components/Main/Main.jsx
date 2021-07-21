@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container/Container";
+import Container from "../Container/Container.jsx";
 import Sidebar from "../Sidebar/Sidebar";
 
 import styled from "styled-components";
