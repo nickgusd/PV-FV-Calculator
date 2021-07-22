@@ -11,10 +11,12 @@ export default function Container() {
     setType(value);
   };
 
+  const options = ["PV", "FV", "PMT", "Rate"];
+
   return (
     <ContainerDiv>
-      <Dropdown onChange={handleChange} />
-      <Calculator option={type} />
+      <Dropdown onChange={handleChange} options={options} />
+      <Calculator option={type} value={options} />
     </ContainerDiv>
   );
 }

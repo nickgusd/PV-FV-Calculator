@@ -5,7 +5,7 @@ import {
 
 export default function Results ({calculation, option, isCalculated}) {
 
-    const choices = ["present value", "future value", "payments", "interest rate"]
+    const choices = ["PV", "FV", "PMT", "Rate"];
 
     if (calculation !== 0) {
         return (
@@ -20,8 +20,8 @@ export default function Results ({calculation, option, isCalculated}) {
                     }
                 })}
            </Container>
-        )
+        );
     } else {
-        return null
+        return null;
     }
 }
