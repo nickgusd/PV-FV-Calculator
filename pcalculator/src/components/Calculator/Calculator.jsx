@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from "react";
 import Results from "../Results/Results.jsx";
 import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import {
   CalcWrapper,
   Button,
   Input,
   Label,
   InputContainer,
+  ClearBtn,
+  Container,
+  BtnContainer,
+  Hidden,
 } from "./Calculator.style";
+import {
+  futureValueState,
+  presentValueState,
+  interestState,
+  periodsState,
+  paymentState,
+  calculateState,
+  isCalculatedState,
+  currentPVState,
+} from "../../store";
 
 export default function Calculator({ option, value }) {
-  const [futureValue, setFutureValue] = useState(0);
-  const [presentValue, setPresentValue] = useState(0);
-  const [interest, setInterest] = useState(0);
-  const [periods, setPeriods] = useState(0);
-  const [payment, setPayment] = useState(0);
-  const [calculate, setCalculate] = useState(0);
-  const [isCalculated, setIsCalculated] = useState(false);
+  const bob = useRecoilValue(currentPVState);
+
+  const [futureValue, setFutureValue] = useRecoilState(futureValueState);
+  const [presentValue, setPresentValue] = useRecoilState(presentValueState);
+  const [interest, setInterest] = useRecoilState(interestState);
+  const [periods, setPeriods] = useRecoilState(periodsState);
+  const [payment, setPayment] = useRecoilState(paymentState);
+  const [calculate, setCalculate] = useRecoilState(calculateState);
+  const [isCalculated, setIsCalculated] = useRecoilState(isCalculatedState);
 
   useEffect(() => {
     setFutureValue("");
@@ -175,15 +198,54 @@ export default function Calculator({ option, value }) {
     setIsCalculated(true);
   };
 
-  const handleClear = () => {
+  const handleClear = (label) => {
+
+
+
+    // if (label === "Present Value") {
+    //     setPresentValue("");
+    // } else if (label === "Future Value") {
+    //     setFutureValue("");
+    // } else if (label === "Interest Rate") {
+    //     setInterest("");
+    // } else if (label === "Payments") {
+    //     setPayment("");
+    // } else if (label === "Periods") {
+    //     setPeriods("");
+    // } else {
+    //     setFutureValue("");
+    //     setPresentValue("");
+    //     setInterest("");
+    //     setPeriods("");
+    //     setCalculate("");
+    //     setPayment("");
+    //     setIsCalculated(false);
+    // }
     setFutureValue("");
-    setPresentValue("");
-    setInterest("");
-    setPeriods("");
-    setCalculate("");
-    setPayment("");
-    setIsCalculated(false);
+        setPresentValue("");
+        setInterest("");
+        setPeriods("");
+        setCalculate("");
+        setPayment("");
+        setIsCalculated(false);
   };
+
+  const clearItem = (event) => {
+      console.log(event.target.id)
+        const {id} = event.target
+   
+    if (id === "Present Value") {
+        setPresentValue("");
+    } else if (id === "Future Value") {
+        setFutureValue("");
+    } else if (id === "Interest Rate") {
+        setInterest("");
+    } else if (id === "Payments") {
+        setPayment("");
+    } else if (id === "Periods") {
+        setPeriods("");
+    }
+  }
 
   const convertToDecimal = (x) => {
     if (x < 1) {
@@ -195,20 +257,12 @@ export default function Calculator({ option, value }) {
 
   const test = {
     PV: {
-      functions: [
-          handleChangeFV, 
-          handleChangeInterest, 
-          handleChangePeriods
-        ],
+      functions: [handleChangeFV, handleChangeInterest, handleChangePeriods],
       value: [futureValue, interest, periods],
-      label: ["FV", "Interest", "Periods"],
+      label: ["Future Value", "Interest Rate", "Periods"],
     },
     FV: {
-      functions: [
-          handleChangePV, 
-          handleChangeInterest, 
-          handleChangePeriods
-        ],
+      functions: [handleChangePV, handleChangeInterest, handleChangePeriods],
       value: [presentValue, interest, periods],
       label: ["Present Value", "Interest", "Periods"],
     },
@@ -239,30 +293,44 @@ export default function Calculator({ option, value }) {
       {value.map((item, idx) => {
         if (item === option) {
           return (
-            <div>
+            <>
               <h1>{item} Calculator</h1>
-              <InputContainer>
-                {test[item].functions.map((thing, index) => {
-                  return (
-                    <div>
-                      <Label for={test[item]}>{test[item].label[index]}</Label>
-                      <Input
-                        type="text"
-                        id={test[item]}
-                        value={test[item].value[index]}
-                        onChange={thing}
-                      />
-                    </div>
-                  );
-                })}
-              </InputContainer>
-            </div>
+              <Container>
+                <InputContainer>
+                  {test[item].functions.map((thing, index) => {
+                    return (
+                      <>
+                        <Label for={test[item]}>
+                          {test[item].label[index]}
+                        </Label>
+                        <Input
+                          type="text"
+                          id={test[item]}
+                          value={test[item].value[index]}
+                          onChange={thing}
+                        />
+                      </>
+                    );
+                  })}
+                </InputContainer>
+                <BtnContainer>
+                  {test[item].label.map((step, index) => {
+                    return (
+                      <>
+                        <Hidden htmlfor={step}>#</Hidden>
+                        <ClearBtn id={step} onClick={clearItem}>Clear</ClearBtn>
+                      </>
+                    );
+                  })}
+                </BtnContainer>
+              </Container>
+            </>
           );
         }
       })}
       {isCalculated ? (
         <Button className="button" onClick={handleClear}>
-          Clear
+          Clear All
         </Button>
       ) : (
         <Button className="button" onClick={handleClick}>
@@ -277,3 +345,4 @@ export default function Calculator({ option, value }) {
     </CalcWrapper>
   );
 }
+ 
