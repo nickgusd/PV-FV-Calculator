@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Results from "../Results/Results.jsx";
+// import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
+import { DeleteBtn } from "./Calculator.style";
 import {
-  RecoilRoot,
-  atom,
-  selector,
   useRecoilState,
   useRecoilValue,
 } from "recoil";
@@ -31,6 +30,9 @@ import {
 
 export default function Calculator({ option, value }) {
   const bob = useRecoilValue(currentPVState);
+
+  //isCalculated ? addPadding : nopaddingBottom
+  //change className - different for styled components
 
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
   const [presentValue, setPresentValue] = useRecoilState(presentValueState);
@@ -198,41 +200,12 @@ export default function Calculator({ option, value }) {
     setIsCalculated(true);
   };
 
-  const handleClear = (label) => {
-
-
-
-    // if (label === "Present Value") {
-    //     setPresentValue("");
-    // } else if (label === "Future Value") {
-    //     setFutureValue("");
-    // } else if (label === "Interest Rate") {
-    //     setInterest("");
-    // } else if (label === "Payments") {
-    //     setPayment("");
-    // } else if (label === "Periods") {
-    //     setPeriods("");
-    // } else {
-    //     setFutureValue("");
-    //     setPresentValue("");
-    //     setInterest("");
-    //     setPeriods("");
-    //     setCalculate("");
-    //     setPayment("");
-    //     setIsCalculated(false);
-    // }
-    setFutureValue("");
-        setPresentValue("");
-        setInterest("");
-        setPeriods("");
-        setCalculate("");
-        setPayment("");
+  const handleClear = () => {
         setIsCalculated(false);
   };
 
   const clearItem = (event) => {
-      console.log(event.target.id)
-        const {id} = event.target
+    const {id} = event.target;
    
     if (id === "Present Value") {
         setPresentValue("");
@@ -264,7 +237,7 @@ export default function Calculator({ option, value }) {
     FV: {
       functions: [handleChangePV, handleChangeInterest, handleChangePeriods],
       value: [presentValue, interest, periods],
-      label: ["Present Value", "Interest", "Periods"],
+      label: ["Present Value", "Interest Rate", "Periods"],
     },
     PMT: {
       functions: [
@@ -289,7 +262,7 @@ export default function Calculator({ option, value }) {
   };
 
   return (
-    <CalcWrapper>
+    <CalcWrapper isCalculated={isCalculated}>
       {value.map((item, idx) => {
         if (item === option) {
           return (
@@ -318,7 +291,7 @@ export default function Calculator({ option, value }) {
                     return (
                       <>
                         <Hidden htmlfor={step}>#</Hidden>
-                        <ClearBtn id={step} onClick={clearItem}>Clear</ClearBtn>
+                        <DeleteBtn id={step} onClick={clearItem} />
                       </>
                     );
                   })}
@@ -330,7 +303,7 @@ export default function Calculator({ option, value }) {
       })}
       {isCalculated ? (
         <Button className="button" onClick={handleClear}>
-          Clear All
+          Reset
         </Button>
       ) : (
         <Button className="button" onClick={handleClick}>

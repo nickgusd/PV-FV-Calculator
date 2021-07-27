@@ -1,5 +1,19 @@
 import React from "react";
 import styled from 'styled-components';
+import { Delete } from "@styled-icons/typicons/Delete";
+import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
+
+export const DeleteBtn = styled(Delete)`
+height: 21px;
+width: auto;
+margin: 15px;
+transform: scale(1.4);
+transition: all .2s ease-in-out;
+
+&:hover {
+    transform: scale(1.7);
+}
+`
 
 export const CalcWrapper = styled.div`
 text-align: center;
@@ -7,7 +21,8 @@ width: 30vw;
 display: block;
 margin: 0 auto;
 margin-top: 20px;
-// border: 1px solid black;
+padding-top: 10px;
+padding-bottom: ${props => props.isCalculated ? "15px" : "0px"};
 border-radius: 6px;
 background: #0b4f6c;
 color: white;
@@ -48,7 +63,8 @@ align-items: center;
 `
 
 export const BtnContainer = styled(InputContainer)`
-width: 3vw;
+width: 2vw;
+// border: 1px solid white;
 `
 
 export const Hidden = styled(Label)`
