@@ -7,14 +7,6 @@ import {
   useRecoilValue,
 } from 'recoil';
 
-// const [futureValue, setFutureValue] = useState(0);
-//   const [presentValue, setPresentValue] = useState(0);
-//   const [interest, setInterest] = useState(0);
-//   const [periods, setPeriods] = useState(0);
-//   const [payment, setPayment] = useState(0);
-//   const [calculate, setCalculate] = useState(0);
-//   const [isCalculated, setIsCalculated] = useState(false);
-
 
 export const futureValueState = atom({
 key: "futureValue",
@@ -49,6 +41,11 @@ export const calculateState = atom({
 export const isCalculatedState = atom({
     key: "isCalculated",
     default: false
+});
+
+export const optionState = atom({
+    key: "option",
+    default: "PV"
 });
 
 export const currentPVState = selector({

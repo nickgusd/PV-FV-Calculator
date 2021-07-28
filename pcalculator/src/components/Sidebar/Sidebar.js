@@ -15,4 +15,6 @@ justify-content: center;
 align-items: center;
 color: white;
 font-size: 16px;
+background: ${props => props.active ? "#ef5750" : "#0b4f6c"};
 `;
+

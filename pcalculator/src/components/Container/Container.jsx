@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import {
+    useRecoilState,
+    useRecoilValue,
+  } from "recoil";
+import {optionState} from "../../store";
 import Calculator from "../Calculator/Calculator.jsx";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 import { ContainerDiv } from "./Container";
 
 export default function Container() {
-  const [type, setType] = useState("PV");
+  const [type, setType] = useRecoilState(optionState);
 
   const handleChange = (event) => {
     const { value } = event.target;

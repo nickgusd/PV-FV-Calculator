@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Results from "../Results/Results.jsx";
-// import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
 import { DeleteBtn } from "./Calculator.style";
 import {
   useRecoilState,
@@ -30,9 +29,6 @@ import {
 
 export default function Calculator({ option, value }) {
   const bob = useRecoilValue(currentPVState);
-
-  //isCalculated ? addPadding : nopaddingBottom
-  //change className - different for styled components
 
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
   const [presentValue, setPresentValue] = useRecoilState(presentValueState);
