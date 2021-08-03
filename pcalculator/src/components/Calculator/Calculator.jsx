@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Results from "../Results/Results.jsx";
 import { DeleteBtn } from "./Calculator.style";
-import {
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   CalcWrapper,
   Button,
@@ -28,8 +25,6 @@ import {
 } from "../../store";
 
 export default function Calculator({ option, value }) {
-  const bob = useRecoilValue(currentPVState);
-
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
   const [presentValue, setPresentValue] = useRecoilState(presentValueState);
   const [interest, setInterest] = useRecoilState(interestState);
@@ -197,24 +192,24 @@ export default function Calculator({ option, value }) {
   };
 
   const handleClear = () => {
-        setIsCalculated(false);
+    setIsCalculated(false);
   };
 
   const clearItem = (event) => {
-    const {id} = event.target;
-   
+    const { id } = event.target;
+
     if (id === "Present Value") {
-        setPresentValue("");
+      setPresentValue("");
     } else if (id === "Future Value") {
-        setFutureValue("");
+      setFutureValue("");
     } else if (id === "Interest Rate") {
-        setInterest("");
+      setInterest("");
     } else if (id === "Payments") {
-        setPayment("");
+      setPayment("");
     } else if (id === "Periods") {
-        setPeriods("");
+      setPeriods("");
     }
-  }
+  };
 
   const convertToDecimal = (x) => {
     if (x < 1) {
@@ -249,11 +244,11 @@ export default function Calculator({ option, value }) {
       functions: [
         handleChangeFV,
         handleChangePV,
-        handleChangeInterest,
+        handleChangePayment,
         handleChangePeriods,
       ],
-      value: [futureValue, presentValue, interest, periods],
-      label: ["Future Value", "Present Value", "Interest Rate", "Periods"],
+      value: [futureValue, presentValue, payment, periods],
+      label: ["Future Value", "Present Value", "Payments", "Periods"],
     },
   };
 
@@ -306,12 +301,17 @@ export default function Calculator({ option, value }) {
           Calculate
         </Button>
       )}
-      <Results
-        calculation={calculate}
-        option={option}
-        isCalculated={isCalculated}
-      />
+      {parseInt(calculate) === 0 && isCalculated ? (
+        <div style={{ color: "red" }}>
+          <b>Please enter numeric values</b>
+        </div>
+      ) : (
+        <Results
+          calculation={calculate}
+          option={option}
+          isCalculated={isCalculated}
+        />
+      )}
     </CalcWrapper>
   );
 }
- 

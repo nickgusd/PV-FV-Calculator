@@ -2,22 +2,24 @@ import React, {useEffect, useState} from "react";
 import {
     Container
 } from "./Results";
+import { Calculation } from "../Dropdown/Dropdown";
 
 export default function Results ({calculation, option, isCalculated}) {
 
     const choices = ["PV", "FV", "PMT", "Rate"];
+    console.log(option, isCalculated,  calculation)
 
-    if (calculation !== 0) {
+    if (parseInt(calculation) !== 0) {
         return (
             <Container>
                 {choices.map((item, idx) => {
                     if (item === option && isCalculated) {
-                        if (option === "interest rate") {
-                            return <b>{option} % {calculation}</b>
+                        if (option === "Rate" && parseInt(calculation) > 0) {
+                            return <b>{option} = {calculation}%</b>
                         } else {
-                            return <b>{option} $ {calculation}</b>
+                            return <b>{option} = $ {calculation}</b>
                         }
-                    }
+                    } 
                 })}
            </Container>
         );

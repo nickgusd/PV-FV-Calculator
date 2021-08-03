@@ -26,7 +26,6 @@ export default function DropDown({ onChange, options }) {
     <Calculation>
       <FormControl className={classes.formControl}>
         <Select
-          //   value={age}
           onChange={onChange}
           displayEmpty
           className={classes.selectEmpty}

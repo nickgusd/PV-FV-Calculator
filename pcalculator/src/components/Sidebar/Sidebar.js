@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
 width: 200px;
 border: 1px solid black;
-background: #0b4f6c;
+// background: #0b4f6c;
+background: #1C5253;
 height: 100%;
 `;
 
@@ -15,6 +16,7 @@ justify-content: center;
 align-items: center;
 color: white;
 font-size: 16px;
-background: ${props => props.active ? "#ef5750" : "#0b4f6c"};
+// background: ${props => props.active ? "#ef5750" : "#0b4f6c"};
+background: ${props => props.active ? "#76B041" : "#1C5253"};
 `;
 

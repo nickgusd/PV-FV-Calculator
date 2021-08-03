@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Nav = styled.div`
     height: 50px;
     width: 100vw;
-    background-color: #0b4f6c;
+    background-color: #1C5253;
     top: 0px;
     color: white;
     font-weight: bold;

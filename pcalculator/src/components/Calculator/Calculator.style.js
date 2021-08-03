@@ -24,7 +24,9 @@ margin-top: 20px;
 padding-top: 10px;
 padding-bottom: ${props => props.isCalculated ? "15px" : "0px"};
 border-radius: 6px;
-background: #0b4f6c;
+// background: #0b4f6c;
+background: #1C5253;
+
 color: white;
 `
 
@@ -37,7 +39,7 @@ margin: 0 auto;
 
 export const Button = styled.button`
 margin-bottom: 20px;
-background-color: #ef5750;
+background-color: #76B041;
 height: 25px;
 width: 100px;
 border: none;
