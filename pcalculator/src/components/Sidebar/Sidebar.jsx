@@ -1,12 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from "react";
+
 import {
 Container,
 Tab,
 } from "./Sidebar";
+
 import {
-    useRecoilState,
     useRecoilValue,
   } from "recoil";
+  
 import {optionState} from "../../store";
 
 export default function Sidebar() {

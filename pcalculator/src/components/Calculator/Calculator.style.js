@@ -1,7 +1,7 @@
-import React from "react";
+
 import styled from 'styled-components';
 import { Delete } from "@styled-icons/typicons/Delete";
-import BackspaceOutlinedIcon from '@material-ui/icons/BackspaceOutlined';
+
 
 export const DeleteBtn = styled(Delete)`
 height: 21px;
@@ -26,7 +26,6 @@ padding-bottom: ${props => props.isCalculated ? "15px" : "0px"};
 border-radius: 6px;
 // background: #0b4f6c;
 background: #1C5253;
-
 color: white;
 `
 

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     useRecoilState,
     useRecoilValue,
   } from "recoil";
+
 import {
     optionState,
     isCalculatedState,
     calculateState
 } from "../../store";
+
 import Calculator from "../Calculator/Calculator.jsx";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 import BasicTable from "../Table/Table";
@@ -41,11 +43,4 @@ if (calculatedState === false) {
         </ContainerDiv>
     )
 }
-
-//   return (
-//     <ContainerDiv>
-//       <Dropdown onChange={handleChange} options={options} />
-//       <Calculator option={type} value={options} />
-//     </ContainerDiv>
-//   );
 }

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {
     Container
 } from "./Results";
-import { Calculation } from "../Dropdown/Dropdown";
+
 
 export default function Results ({calculation, option, isCalculated}) {
 
@@ -26,4 +26,4 @@ export default function Results ({calculation, option, isCalculated}) {
     } else {
         return null;
     }
-}
+} 

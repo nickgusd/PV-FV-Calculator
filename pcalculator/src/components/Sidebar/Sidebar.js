@@ -5,7 +5,7 @@ width: 200px;
 border: 1px solid black;
 // background: #0b4f6c;
 background: #1C5253;
-height: 100%;
+height: 100vw;
 `;
 
 export const Tab = styled.div`

@@ -1,19 +1,14 @@
 import React from "react";
+
 import {
   RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
 } from 'recoil';
+
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Main from "./components/Main/Main.jsx";
 
 
-
-function App() {
-  const React_Version = React.version;
-  
+function App() {  
   return (
     <RecoilRoot>
       <Navbar />

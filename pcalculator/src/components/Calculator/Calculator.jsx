@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Results from "../Results/Results.jsx";
 import { DeleteBtn } from "./Calculator.style";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   CalcWrapper,
   Button,
   Input,
   Label,
   InputContainer,
-  ClearBtn,
   Container,
   BtnContainer,
   Hidden,
@@ -21,7 +20,6 @@ import {
   paymentState,
   calculateState,
   isCalculatedState,
-  currentPVState,
 } from "../../store";
 
 export default function Calculator({ option, value }) {
@@ -315,3 +313,4 @@ export default function Calculator({ option, value }) {
     </CalcWrapper>
   );
 }
+ 
