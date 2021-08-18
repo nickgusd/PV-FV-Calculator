@@ -1,19 +1,20 @@
-import React from "react";
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Button from "./Button";
 
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
 
-import { shallow } from "enzyme";
+describe("button test", ()=> {
+    let wrapper;
 
-Enzyme.configure({ adapter: new Adapter() });
+beforeEach(()=> {
+wrapper = shallow(<Button />);
 
-describe ("rendering components", ()=> {
-    it("renders Button component without crashing", ()=> {
-        const wrapper = shallow(<Button/>);
-        const button = (<Button variant="outlined" >Default</Button>);
-        expect(wrapper.contains(button)).toEqual(true);
-    });
+});
 
-})
+test('render a button with the text default', ()=> {
+    expect(wrapper.find("button").text()).toBe("Default");
+});
+
+});

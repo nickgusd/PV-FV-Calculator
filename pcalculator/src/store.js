@@ -25,7 +25,7 @@ export const interestState = atom({
 
 export const periodsState= atom({
     key: "periods",
-    default: 0
+    default: 1
 });
 
 export const paymentState = atom({

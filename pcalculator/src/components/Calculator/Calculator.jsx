@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Results from "../Results/Results.jsx";
 import { DeleteBtn } from "./Calculator.style";
 import { useRecoilState } from "recoil";
@@ -288,6 +288,8 @@ export default function Calculator({ option, value }) {
               </Container>
             </>
           );
+        } else {
+          return null;
         }
       })}
       {isCalculated ? (

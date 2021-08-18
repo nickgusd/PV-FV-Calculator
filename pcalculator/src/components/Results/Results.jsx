@@ -7,7 +7,7 @@ import {
 export default function Results ({calculation, option, isCalculated}) {
 
     const choices = ["PV", "FV", "PMT", "Rate"];
-    console.log(option, isCalculated,  calculation)
+     
 
     if (parseInt(calculation) !== 0) {
         return (
