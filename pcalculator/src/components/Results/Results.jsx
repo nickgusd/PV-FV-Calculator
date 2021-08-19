@@ -1,7 +1,12 @@
 import React from "react";
+
 import {
     Container
 } from "./Results";
+
+import {
+    numberWithCommas
+} from "../../helpers";
 
 
 export default function Results ({calculation, option, isCalculated}) {
@@ -15,9 +20,9 @@ export default function Results ({calculation, option, isCalculated}) {
                 {choices.map((item, idx) => {
                     if (item === option && isCalculated) {
                         if (option === "Rate" && parseInt(calculation) > 0) {
-                            return <b>{option} = {calculation}%</b>
+                            return <b>{option} = {numberWithCommas(calculation)}%</b>
                         } else {
-                            return <b>{option} = $ {calculation}</b>
+                            return <b>{option} = $ {numberWithCommas(calculation)}</b>
                         }
                     } 
                 })}
@@ -26,4 +31,4 @@ export default function Results ({calculation, option, isCalculated}) {
     } else {
         return null;
     }
-} 
+}  

@@ -65,8 +65,8 @@ export default function BasicTable() {
   const interest = useRecoilValue(interestState);
   const payment = useRecoilValue(paymentState);
 
-  // const tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(",").join("")), parseFloat(payment), convertToDecimal(interest));
-  const tableDataObj = fvTable(periods, parseFloat(presentVal.split(",").join("")), parseFloat(payment), convertToDecimal(interest));
+  const tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(",").join("")), parseFloat(payment), convertToDecimal(interest));
+  // const tableDataObj = fvTable(periods, parseFloat(presentVal.split(",").join("")), parseFloat(payment), convertToDecimal(interest));
   // console.log(tableDataObj);
 
   for (const [key] of Object.entries(tableDataObj)) {
