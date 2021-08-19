@@ -21,6 +21,7 @@ import {
   calculateState,
   isCalculatedState,
 } from "../../store";
+import { ListItemText } from "@material-ui/core";
 
 export default function Calculator({ option, value }) {
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
@@ -45,16 +46,61 @@ export default function Calculator({ option, value }) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const getPresentValue = (futureValue, interest, periods) => {
-    let pv = futureValue / (1 + interest) ** periods;
-    return numberWithCommas(pv.toFixed(2));
-  };
+  const conv_number = (expr, decplaces) => {
+    var str = "" + Math.round(eval(expr) * Math.pow(10,decplaces));
+    while (str.length <= decplaces) {
+      str = "0" + str;
+    }
+  
+    var decpoint = str.length - decplaces;
+    return (str.substring(0,decpoint) + "." + str.substring(decpoint,str.length));
+  }
 
-  const getFutureValue = (presentValue, interest, periods) => {
-    let fv = presentValue * (1 + interest) ** periods;
-    return numberWithCommas(fv.toFixed(2));
-  };
+  const getPresentValue = (rate, nper, pmt, fv) => {
+    let pv_value, x, y;
+    rate = parseFloat(rate);
+    nper = parseFloat(nper);
+    pmt = parseFloat(pmt);
+    fv = parseFloat(fv);
+    if ( nper == 0 ) {
+      alert("Why do you want to test me with zeros?");
+      return(0);       
+    }
+    if ( rate == 0 ) { // Interest rate is 0
+      pv_value = -(fv + (pmt * nper));
+    } else {
+      x = Math.pow(1 + rate, -nper); 
+      y = Math.pow(1 + rate, nper);
+      pv_value = - ( x * ( fv * rate - pmt + y * pmt )) / rate;
+    }
+    pv_value = conv_number(pv_value,2);
+    return pv_value;
+  }
 
+  
+
+  const getFutureValue = (rate, nper, pmt, pv) => {
+    let fv_value, x, y;
+    rate = parseFloat(rate);
+    nper = parseFloat(nper);
+    pmt = parseFloat(pmt);
+    pv = parseFloat(pv);
+    if ( nper == 0 ) {
+      alert("Why do you want to test me with zeros?");
+      return(0);
+    }
+    if ( rate == 0 ) { // Interest rate is 0
+      fv_value = -(pv + (pmt * nper));
+    } else {
+      x = Math.pow(1 + rate, nper);
+      fv_value = - ( -pmt + x * pmt + rate * x * pv ) /rate;
+    }
+    fv_value = conv_number(fv_value,2);
+    return fv_value;
+  }
+
+
+  
   const getPmt = (
     rate_per_period,
     number_of_payments,
@@ -156,27 +202,30 @@ export default function Calculator({ option, value }) {
 
   const handleClick = () => {
     let pv = getPresentValue(
-      futureValue.split(",").join(""),
-      convertToDecimal(interest),
-      periods.split(",").join("")
-    );
-    let fv = getFutureValue(
-      presentValue.split(",").join(""),
-      convertToDecimal(interest),
-      periods.split(",").join("")
-    );
-    let pmt = getPmt(
       convertToDecimal(interest),
       periods.split(",").join(""),
+      payment.split(",").join(""),
+      futureValue.split(",").join("")
+    );
+    let fv = getFutureValue(
+      convertToDecimal(interest),
+      periods.split(",").join(""),
+      payment.split(",").join(""),
       presentValue.split(",").join("")
     );
-    let rate = getRate(
-      parseInt(periods.split(",").join("")),
-      parseInt(payment.split(",").join("")),
-      parseInt(presentValue.split(",").join("")),
-      parseInt(futureValue.split(",").join(""))
+    let pmt = getPmt(
+      convertToDecimal(parseFloat(interest)),
+      parseFloat(periods), 
+      parseFloat(presentValue), 
+      parseFloat(futureValue)
     );
-
+    let rate = getRate(
+      parseFloat(periods.split(",").join("")),
+      parseFloat(payment.split(",").join("")),
+      parseFloat(presentValue.split(",").join("")),
+      parseFloat(futureValue.split(",").join(""))
+    );
+    
     if (option === "PV") {
       setCalculate(pv);
     } else if (option === "FV") {
@@ -219,14 +268,14 @@ export default function Calculator({ option, value }) {
 
   const test = {
     PV: {
-      functions: [handleChangeFV, handleChangeInterest, handleChangePeriods],
-      value: [futureValue, interest, periods],
-      label: ["Future Value", "Interest Rate", "Periods"],
+      functions: [handleChangeFV, handleChangeInterest, handleChangePayment, handleChangePeriods],
+      value: [futureValue, interest, payment, periods],
+      label: ["Future Value", "Interest Rate", "Payment", "Periods"],
     },
     FV: {
-      functions: [handleChangePV, handleChangeInterest, handleChangePeriods],
-      value: [presentValue, interest, periods],
-      label: ["Present Value", "Interest Rate", "Periods"],
+      functions: [handleChangePV, handleChangeInterest, handleChangePayment, handleChangePeriods],
+      value: [presentValue, interest, payment, periods],
+      label: ["Present Value", "Interest Rate", "Payment", "Periods"],
     },
     PMT: {
       functions: [
@@ -246,7 +295,7 @@ export default function Calculator({ option, value }) {
         handleChangePeriods,
       ],
       value: [futureValue, presentValue, payment, periods],
-      label: ["Future Value", "Present Value", "Payments", "Periods"],
+      label: ["Future Value", "Present Value", "Payment", "Periods"],
     },
   };
 

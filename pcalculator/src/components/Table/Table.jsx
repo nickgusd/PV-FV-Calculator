@@ -74,7 +74,7 @@ const tableData = (periods, bb, pmt, interest  ) => {
     if (count === 1) {
       pvArr.push(bb.toFixed(2));
       fvArr.push(eb.toFixed(2));
-      interestArr.push(periodInterest);
+      interestArr.push(periodInterest.toFixed(2));
     } else {
       bb = eb;
       eb = bb - (pmt - periodInterest);
