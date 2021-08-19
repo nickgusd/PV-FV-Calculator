@@ -21,7 +21,6 @@ import {
   calculateState,
   isCalculatedState,
 } from "../../store";
-import { ListItemText } from "@material-ui/core";
 
 export default function Calculator({ option, value }) {
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
@@ -77,8 +76,6 @@ export default function Calculator({ option, value }) {
     return pv_value;
   }
 
-  
-
   const getFutureValue = (rate, nper, pmt, pv) => {
     let fv_value, x, y;
     rate = parseFloat(rate);
@@ -99,8 +96,6 @@ export default function Calculator({ option, value }) {
     return fv_value;
   }
 
-
-  
   const getPmt = (
     rate_per_period,
     number_of_payments,
@@ -241,7 +236,7 @@ export default function Calculator({ option, value }) {
   const handleClear = () => {
     setIsCalculated(false);
   };
-
+  console.log(calculate);
   const clearItem = (event) => {
     const { id } = event.target;
 

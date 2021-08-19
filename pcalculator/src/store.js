@@ -48,6 +48,11 @@ export const optionState = atom({
     default: "PV"
 });
 
+export const tableDataState = atom({
+    key: "data",
+    default: {}
+});
+
 export const currentPVState = selector({
     key: "roundPV",
     get: ({get}) => {
@@ -55,3 +60,4 @@ export const currentPVState = selector({
         return pv + 5
     }
 });
+
