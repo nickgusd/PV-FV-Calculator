@@ -75,7 +75,23 @@ export default function BasicTable({ option }) {
   const calculated = useRecoilValue(calculateState);
   const isCalculated = useRecoilValue(isCalculatedState);
 
-  const tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+  let tableDataObj;
+  //  const options = ["PV", "FV", "PMT", "Rate"];
+  // periods, pv, pmt, interest
+  console.log(fvTable(10, 20000, -2000, 0.06));
+
+  switch (option) {
+    case "PV":
+      tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+      break;
+    case "FV":
+      tableDataObj = fvTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+      break;
+    default:
+      tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+  }
+
+  console.log(tableDataObj);
 
   tableDataObj.Period.forEach((item, idx) => {
     rows.push(

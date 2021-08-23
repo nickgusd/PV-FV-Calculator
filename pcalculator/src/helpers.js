@@ -80,7 +80,7 @@ export const fvTable = (periods, pv, pmt, interest) => {
 
   while (count <= periods) {
     let periodInterest = pv * interest;
-    let eb = pv + toPositive(pmt) + periodInterest;
+    let eb = pv - (toPositive(pmt) - periodInterest);
 
     if (count === 1) {
       pvArr.push(pv.toFixed(2));
@@ -89,8 +89,8 @@ export const fvTable = (periods, pv, pmt, interest) => {
     } else {
       pv = eb;
       periodInterest = pv * interest;
-      eb = pv + toPositive(pmt) + periodInterest;
-      fvArr.push(toPositive(eb).toFixed(2));
+      eb = pv - (toPositive(pmt) - periodInterest);
+      fvArr.push(toNegative(eb).toFixed(2));
       pvArr.push(pv.toFixed(2));
       interestArr.push(periodInterest.toFixed(2));
     }
