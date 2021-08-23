@@ -43,13 +43,13 @@ export const pvTable = (periods, bb, pmt, interest) => {
 
     if (count === 1) {
       pvArr.push(bb.toFixed(2));
-      fvArr.push(toPositive(eb.toFixed(2)));
+      fvArr.push(toNegative(eb.toFixed(2)));
       interestArr.push(periodInterest.toFixed(2));
     } else {
       bb = eb;
       periodInterest = bb * interest;
       eb = bb - (-toNegative(pmt) - periodInterest);
-      fvArr.push(toPositive(eb.toFixed(2)));
+      fvArr.push(toNegative(eb.toFixed(2)));
       pvArr.push(bb.toFixed(2));
       interestArr.push(periodInterest.toFixed(2));
     }
