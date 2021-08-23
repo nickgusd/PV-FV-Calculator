@@ -1,16 +1,15 @@
 import React from "react";
 import {
-    useRecoilState,
-    useRecoilValue,
-  } from "recoil";
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
 import {
-    optionState,
-    isCalculatedState,
-    calculateState
+  optionState,
+  isCalculatedState,
 } from "../../store";
 
-import Calculator from "../Calculator/Calculator.jsx";
+import Calculator from "../Calculator/Calculator";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 import BasicTable from "../Table/Table";
 import { ContainerDiv } from "./Container";
@@ -24,23 +23,21 @@ export default function Container() {
   };
 
   const calculatedState = useRecoilValue(isCalculatedState);
-  const calculation = useRecoilValue(calculateState);
   const options = ["PV", "FV", "PMT", "Rate"];
 
-if (calculatedState === false) {
+  if (calculatedState === false) {
     return (
-        <ContainerDiv>
-            <Dropdown onChange={handleChange} options={options} />
-            <Calculator option={type} value={options} />
-        </ContainerDiv>
-    )
-} else {
-    return (
-        <ContainerDiv>
-            <Dropdown onChange={handleChange} options={options} />
-            <Calculator option={type} value={options} />
-            <BasicTable />
-        </ContainerDiv>
-    )
-}
+      <ContainerDiv>
+        <Dropdown onChange={handleChange} options={options} />
+        <Calculator option={type} value={options} />
+      </ContainerDiv>
+    );
+  }
+  return (
+    <ContainerDiv>
+      <Dropdown onChange={handleChange} options={options} />
+      <Calculator option={type} value={options} />
+      <BasicTable option={type} />
+    </ContainerDiv>
+  );
 }

@@ -7,12 +7,11 @@ import {
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Main from "./components/Main/Main.jsx";
 
-
-function App() {  
+function App() {
   return (
     <RecoilRoot>
       <Navbar />
-      <Main/>
+      <Main />
     </RecoilRoot>
   );
 }

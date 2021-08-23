@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
-import Results from "../Results/Results.jsx";
-import { DeleteBtn } from "./Calculator.style";
-import { useRecoilState } from "recoil";
+/* eslint-disable radix */
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import Results from '../Results/Results.jsx';
 import {
+  DeleteBtn,
   CalcWrapper,
   Button,
   Input,
@@ -11,7 +14,8 @@ import {
   Container,
   BtnContainer,
   Hidden,
-} from "./Calculator.style";
+} from './Calculator.style';
+
 import {
   futureValueState,
   presentValueState,
@@ -20,17 +24,15 @@ import {
   paymentState,
   calculateState,
   isCalculatedState,
-} from "../../store";
+} from '../../store';
 
 import {
   convertToDecimal,
-  numberWithCommas,
-  conv_number,
   getPresentValue,
   getFutureValue,
   getPmt,
-  getRate
-} from "../../helpers";
+  getRate,
+} from '../../helpers';
 
 export default function Calculator({ option, value }) {
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
@@ -42,12 +44,12 @@ export default function Calculator({ option, value }) {
   const [isCalculated, setIsCalculated] = useRecoilState(isCalculatedState);
 
   useEffect(() => {
-    setFutureValue("");
-    setPresentValue("");
-    setInterest("");
-    setPeriods("");
-    setCalculate("");
-    setPayment("");
+    setFutureValue('');
+    setPresentValue('');
+    setInterest('');
+    setPeriods('');
+    setCalculate('');
+    setPayment('');
     setIsCalculated(false);
   }, [option]);
 
@@ -77,36 +79,36 @@ export default function Calculator({ option, value }) {
   };
 
   const handleClick = () => {
-    let pv = getPresentValue(
+    const pv = getPresentValue(
       convertToDecimal(interest),
-      periods.split(",").join(""),
-      payment.split(",").join(""),
-      futureValue.split(",").join("")
+      periods.split(',').join(''),
+      payment.split(',').join(''),
+      futureValue.split(',').join(''),
     );
-    let fv = getFutureValue(
+    const fv = getFutureValue(
       convertToDecimal(interest),
-      periods.split(",").join(""),
-      payment.split(",").join(""),
-      presentValue.split(",").join("")
+      periods.split(',').join(''),
+      payment.split(',').join(''),
+      presentValue.split(',').join(''),
     );
-    let pmt = getPmt(
+    const pmt = getPmt(
       convertToDecimal(parseFloat(interest)),
-      parseFloat(periods), 
-      parseFloat(presentValue), 
-      parseFloat(futureValue)
+      parseFloat(periods),
+      parseFloat(presentValue),
+      parseFloat(futureValue),
     );
-    let rate = getRate(
-      parseFloat(periods.split(",").join("")),
-      parseFloat(payment.split(",").join("")),
-      parseFloat(presentValue.split(",").join("")),
-      parseFloat(futureValue.split(",").join(""))
+    const rate = getRate(
+      parseFloat(periods.split(',').join('')),
+      parseFloat(payment.split(',').join('')),
+      parseFloat(presentValue.split(',').join('')),
+      parseFloat(futureValue.split(',').join('')),
     );
-    
-    if (option === "PV") {
+
+    if (option === 'PV') {
       setCalculate(pv);
-    } else if (option === "FV") {
+    } else if (option === 'FV') {
       setCalculate(fv);
-    } else if (option === "PMT") {
+    } else if (option === 'PMT') {
       setCalculate(pmt);
     } else {
       setCalculate((rate * 100).toFixed(2));
@@ -117,20 +119,20 @@ export default function Calculator({ option, value }) {
   const handleClear = () => {
     setIsCalculated(false);
   };
-  console.log(calculate);
+
   const clearItem = (event) => {
     const { id } = event.target;
 
-    if (id === "Present Value") {
-      setPresentValue("");
-    } else if (id === "Future Value") {
-      setFutureValue("");
-    } else if (id === "Interest Rate") {
-      setInterest("");
-    } else if (id === "Payment") {
-      setPayment("");
-    } else if (id === "Periods") {
-      setPeriods("");
+    if (id === 'Present Value') {
+      setPresentValue('');
+    } else if (id === 'Future Value') {
+      setFutureValue('');
+    } else if (id === 'Interest Rate') {
+      setInterest('');
+    } else if (id === 'Payment') {
+      setPayment('');
+    } else if (id === 'Periods') {
+      setPeriods('');
     }
   };
 
@@ -138,12 +140,12 @@ export default function Calculator({ option, value }) {
     PV: {
       functions: [handleChangeFV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [futureValue, interest, payment, periods],
-      label: ["Future Value", "Interest Rate", "Payment", "Periods"],
+      label: ['Future Value', 'Interest Rate', 'Payment', 'Periods'],
     },
     FV: {
       functions: [handleChangePV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [presentValue, interest, payment, periods],
-      label: ["Present Value", "Interest Rate", "Payment", "Periods"],
+      label: ['Present Value', 'Interest Rate', 'Payment', 'Periods'],
     },
     PMT: {
       functions: [
@@ -153,7 +155,7 @@ export default function Calculator({ option, value }) {
         handleChangePeriods,
       ],
       value: [futureValue, presentValue, interest, periods],
-      label: ["Future Value", "Present Value", "Interest Rate", "Periods"],
+      label: ['Future Value', 'Present Value', 'Interest Rate', 'Periods'],
     },
     Rate: {
       functions: [
@@ -163,51 +165,50 @@ export default function Calculator({ option, value }) {
         handleChangePeriods,
       ],
       value: [futureValue, presentValue, payment, periods],
-      label: ["Future Value", "Present Value", "Payment", "Periods"],
+      label: ['Future Value', 'Present Value', 'Payment', 'Periods'],
     },
   };
 
   return (
     <CalcWrapper isCalculated={isCalculated}>
-      {value.map((item, idx) => {
+      {value.map((item) => {
         if (item === option) {
           return (
             <>
-              <h1>{item} Calculator</h1>
+              <h1>
+                {item}
+                {' '}
+                Calculator
+              </h1>
               <Container>
                 <InputContainer>
-                  {test[item].functions.map((thing, index) => {
-                    return (
-                      <>
-                        <Label for={test[item]}>
-                          {test[item].label[index]}
-                        </Label>
-                        <Input
-                          type="text"
-                          id={test[item]}
-                          value={test[item].value[index]}
-                          onChange={thing}
-                        />
-                      </>
-                    );
-                  })}
+                  {test[item].functions.map((thing, index) => (
+                    <>
+                      <Label for={test[item]}>
+                        {test[item].label[index]}
+                      </Label>
+                      <Input
+                        type="text"
+                        id={test[item]}
+                        value={test[item].value[index]}
+                        onChange={thing}
+                      />
+                    </>
+                  ))}
                 </InputContainer>
                 <BtnContainer>
-                  {test[item].label.map((step, index) => {
-                    return (
-                      <>
-                        <Hidden htmlfor={step}>#</Hidden>
-                        <DeleteBtn id={step} onClick={clearItem} />
-                      </>
-                    );
-                  })}
+                  {test[item].label.map((step) => (
+                    <>
+                      <Hidden htmlfor={step}>#</Hidden>
+                      <DeleteBtn id={step} onClick={clearItem} />
+                    </>
+                  ))}
                 </BtnContainer>
               </Container>
             </>
           );
-        } else {
-          return null;
         }
+        return null;
       })}
       {isCalculated ? (
         <Button className="button" onClick={handleClear}>
@@ -219,7 +220,7 @@ export default function Calculator({ option, value }) {
         </Button>
       )}
       {parseInt(calculate) === 0 && isCalculated ? (
-        <div style={{ color: "red" }}>
+        <div style={{ color: 'red' }}>
           <b>Please enter numeric values</b>
         </div>
       ) : (
@@ -232,4 +233,3 @@ export default function Calculator({ option, value }) {
     </CalcWrapper>
   );
 }
- 

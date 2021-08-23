@@ -2,14 +2,14 @@ import React from "react";
 import Container from "../Container/Container.jsx";
 import Sidebar from "../Sidebar/Sidebar.jsx";
 import {
-    Wrapper
+  Wrapper,
 } from "./Main";
 
 export default function Main() {
-    return (
-        <Wrapper >
-            <Sidebar/>
-            <Container/>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Sidebar />
+      <Container />
+    </Wrapper>
+  );
 }

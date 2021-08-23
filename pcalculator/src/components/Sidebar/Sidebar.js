@@ -16,7 +16,6 @@ justify-content: center;
 align-items: center;
 color: white;
 font-size: 16px;
-// background: ${props => props.active ? "#ef5750" : "#0b4f6c"};
-background: ${props => props.active ? "#76B041" : "#1C5253"};
+// background: ${(props) => (props.active ? "#ef5750" : "#0b4f6c")};
+background: ${(props) => (props.active ? "#76B041" : "#1C5253")};
 `;
-
