@@ -23,6 +23,7 @@ import {
   convertToDecimal,
   pvTable,
   fvTable,
+  pmtTable,
 } from '../../helpers';
 
 import {
@@ -87,6 +88,9 @@ export default function BasicTable({ option }) {
     case "FV":
       tableDataObj = fvTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
       break;
+    case "PMT":
+      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(beginningBalance.split(',').join('')), convertToDecimal(interest));
+      break;
     default:
       tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
   }
@@ -104,6 +108,7 @@ export default function BasicTable({ option }) {
   });
 
   const data = rows.slice(rows.length - periods, rows.length);
+  console.log(data);
 
   useEffect(() => {
     setTableData(data);
