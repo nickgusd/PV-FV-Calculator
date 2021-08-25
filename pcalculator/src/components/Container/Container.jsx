@@ -25,19 +25,11 @@ export default function Container() {
   const calculatedState = useRecoilValue(isCalculatedState);
   const options = ["PV", "FV", "PMT", "Rate"];
 
-  if (calculatedState === false) {
-    return (
-      <ContainerDiv>
-        <Dropdown onChange={handleChange} options={options} />
-        <Calculator option={type} value={options} />
-      </ContainerDiv>
-    );
-  }
   return (
     <ContainerDiv>
       <Dropdown onChange={handleChange} options={options} />
       <Calculator option={type} value={options} />
-      <BasicTable option={type} />
+      {calculatedState ? <BasicTable option={type} /> : null}
     </ContainerDiv>
   );
 }
