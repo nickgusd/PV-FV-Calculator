@@ -27,7 +27,7 @@ export default function Results({ calculation, option, isCalculated }) {
                   {' '}
                   =
                   {' '}
-                  {numberWithCommas(calculation)}
+                  {calculation.toFixed(3)}
                   %
                 </b>
               );
