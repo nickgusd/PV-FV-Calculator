@@ -22,7 +22,6 @@ margin-top: 20px;
 padding-top: 10px;
 padding-bottom: ${(props) => (props.isCalculated ? "15px" : "0px")};
 border-radius: 6px;
-// background: #0b4f6c;
 background: #1C5253;
 color: white;
 `;
@@ -55,7 +54,7 @@ export const Label = styled.label`
 
 export const InputContainer = styled.div`
 width: 15vw;
-// border: 1px solid white;
+
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -63,7 +62,6 @@ align-items: center;
 
 export const BtnContainer = styled(InputContainer)`
 width: 2vw;
-// border: 1px solid white;
 `;
 
 export const Hidden = styled(Label)`
