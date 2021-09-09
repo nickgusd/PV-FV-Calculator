@@ -5,6 +5,12 @@ width: 200px;
 border: 1px solid black;
 background: #1C5253;
 height: 100vw;
+overflow: auto;
+`;
+
+export const Wrapper = styled.div`
+position: fixed;
+width: 200px;
 `;
 
 export const Tab = styled.div`

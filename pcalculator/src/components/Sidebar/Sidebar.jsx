@@ -10,6 +10,7 @@ import {
 import {
   Container,
   Tab,
+  Wrapper,
 } from "./Sidebar";
 
 import { optionState } from "../../store";
@@ -74,13 +75,17 @@ export default function Sidebar() {
   if (active.length > 0) {
     return (
       <Container>
-        {active.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+        <Wrapper>
+          {active.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+        </Wrapper>
       </Container>
     );
   }
   return (
     <Container>
-      {arr.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+      <Wrapper>
+        {arr.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+      </Wrapper>
     </Container>
   );
 }
