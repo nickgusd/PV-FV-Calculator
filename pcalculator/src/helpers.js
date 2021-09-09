@@ -130,7 +130,7 @@ export const pmtTable = (periods, pv, pmt, interest) => {
     } else {
       pv = eb;
       periodInterest = pv * interest;
-      eb = pv - (toPositive(pmt) - periodInterest);
+      eb = pv - (toPositive(pmt) - periodInterest.toFixed(2));
       fvArr.push(toNegative(eb).toFixed(2));
       pvArr.push(pv.toFixed(2));
       interestArr.push(periodInterest.toFixed(2));
