@@ -88,6 +88,9 @@ export default function BasicTable({ option }) {
     case "PMT":
       tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(beginningBalance.split(',').join('')), convertToDecimal(interest));
       break;
+    case "Rate":
+      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      break;
     default:
       tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
   }

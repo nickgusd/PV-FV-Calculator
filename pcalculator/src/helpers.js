@@ -152,6 +152,47 @@ export const pmtTable = (periods, pv, pmt, interest) => {
   );
 };
 
+export const rateTable = (periods, pv, pmt, interest) => {
+  let count = 1;
+  const pvArr = [];
+  const interestArr = [];
+  const fvArr = [];
+  const pmtArr = [];
+  const periodArr = [];
+
+  while (count <= periods) {
+    let periodInterest = pv * interest;
+    let eb = pv - (toPositive(pmt) - periodInterest);
+
+    if (count === 1) {
+      pvArr.push(pv.toFixed(2));
+      fvArr.push(toNegative(eb).toFixed(2));
+      interestArr.push(periodInterest.toFixed(2));
+    } else {
+      pv = eb;
+      periodInterest = pv * interest;
+      eb = pv - (toPositive(pmt) - periodInterest);
+      fvArr.push(toNegative(eb).toFixed(2));
+      pvArr.push(pv.toFixed(2));
+      interestArr.push(periodInterest.toFixed(2));
+    }
+    pmtArr.push(toNegative(pmt).toFixed(2));
+    periodArr.push(count);
+
+    count++;
+  }
+
+  return (
+    {
+      Period: periodArr,
+      PV: pvArr,
+      PMT: pmtArr,
+      Interest: interestArr,
+      FV: fvArr,
+    }
+  );
+};
+
 export const conv_number = (expr, decplaces) => {
   let str = `${Math.round(eval(expr) * Math.pow(10, decplaces))}`;
   while (str.length <= decplaces) {

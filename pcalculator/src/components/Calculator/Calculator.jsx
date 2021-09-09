@@ -111,7 +111,7 @@ export default function Calculator({ option, value }) {
     } else if (option === 'PMT') {
       setCalculate(pmt);
     } else {
-      setCalculate((rate * 100).toFixed(2));
+      setCalculate((rate * 100));
     }
     setIsCalculated(true);
   };
