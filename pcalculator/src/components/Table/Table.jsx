@@ -91,9 +91,15 @@ export default function BasicTable({ option }) {
     case "Rate":
       tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
       break;
+    case "Periods":
+      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      break;
     default:
       tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
   }
+
+  // rate, payment, present, future,
+  // Need to add a calculation table for periods and update tableDataObj
 
   tableDataObj.Period.forEach((item, idx) => {
     rows.push(

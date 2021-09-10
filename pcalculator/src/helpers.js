@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-var */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-eval */
@@ -316,4 +318,16 @@ export const getRate = (periods, payment, present, future, type, guess) => {
     ++i;
   }
   return rate;
+};
+
+export const getNPER = (rate, payment, present, future, type) => {
+  var type = (typeof type === 'undefined') ? 0 : type;
+
+  var future = (typeof future === 'undefined') ? 0 : future;
+
+  rate = eval(rate);
+
+  const num = payment * (1 + rate * type) - future * rate;
+  const den = (present * rate + payment * (1 + rate * type));
+  return Math.log(num / den) / Math.log(1 + rate);
 };

@@ -23,7 +23,7 @@ export default function Container() {
   };
 
   const calculatedState = useRecoilValue(isCalculatedState);
-  const options = ["PV", "FV", "PMT", "Rate"];
+  const options = ["PV", "FV", "PMT", "Rate", "Periods"];
 
   return (
     <ContainerDiv>
