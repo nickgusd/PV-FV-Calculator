@@ -114,6 +114,8 @@ export default function Calculator({ option, value }) {
       futureValue.split(',').join(''),
     );
 
+    console.log(nper);
+
     if (option === 'PV') {
       setCalculate(pv);
     } else if (option === 'FV') {

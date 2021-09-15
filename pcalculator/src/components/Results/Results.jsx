@@ -31,6 +31,16 @@ export default function Results({ calculation, option, isCalculated }) {
                   %
                 </b>
               );
+            } if (option === "Periods" && parseInt(calculation) > 0) {
+              return (
+                <b>
+                  {option}
+                  {' '}
+                  =
+                  {' '}
+                  {calculation.toFixed(3)}
+                </b>
+              );
             }
             return (
               <b>
