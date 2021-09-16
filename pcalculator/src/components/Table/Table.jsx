@@ -24,6 +24,8 @@ import {
   pvTable,
   fvTable,
   pmtTable,
+  rateTable,
+  periodsTable,
 } from '../../helpers';
 
 import {
@@ -70,7 +72,7 @@ export default function BasicTable({ option }) {
 
   const beginningBalance = useRecoilValue(calculateState);
   const presentVal = useRecoilValue(presentValueState);
-  const periods = useRecoilValue(periodsState);
+  const periods = useRecoilValue(periodsState) || beginningBalance;
   const interest = useRecoilValue(interestState);
   const payment = useRecoilValue(paymentState);
   const calculated = useRecoilValue(calculateState);
@@ -89,17 +91,17 @@ export default function BasicTable({ option }) {
       tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(beginningBalance.split(',').join('')), convertToDecimal(interest));
       break;
     case "Rate":
-      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      tableDataObj = rateTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
       break;
     case "Periods":
-      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      tableDataObj = periodsTable(beginningBalance, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
       break;
     default:
       tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
   }
 
   // rate, payment, present, future,
-  // Need to add a calculation table for periods and update tableDataObj
+  // Need to update periodsTable
 
   tableDataObj.Period.forEach((item, idx) => {
     rows.push(
