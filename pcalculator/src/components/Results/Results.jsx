@@ -13,7 +13,7 @@ import {
 } from "../../helpers";
 
 export default function Results({ calculation, option, isCalculated }) {
-  const choices = ["PV", "FV", "PMT", "Rate"];
+  const choices = ["PV", "FV", "PMT", "Rate", "Periods"];
 
   if (parseInt(calculation) !== 0) {
     return (
@@ -29,6 +29,16 @@ export default function Results({ calculation, option, isCalculated }) {
                   {' '}
                   {calculation.toFixed(3)}
                   %
+                </b>
+              );
+            } if (option === "Periods" && parseInt(calculation) > 0) {
+              return (
+                <b>
+                  {option}
+                  {' '}
+                  =
+                  {' '}
+                  {calculation.toFixed(3)}
                 </b>
               );
             }

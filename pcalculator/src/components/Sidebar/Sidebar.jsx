@@ -35,6 +35,10 @@ export default function Sidebar() {
       type: "Interest",
       active: false,
     },
+    {
+      type: "Periods",
+      active: false,
+    },
   ];
 
   const changeType = (option) => {

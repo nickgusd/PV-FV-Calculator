@@ -32,6 +32,7 @@ import {
   getFutureValue,
   getPmt,
   getRate,
+  getNPER,
 } from '../../helpers';
 
 export default function Calculator({ option, value }) {
@@ -104,12 +105,25 @@ export default function Calculator({ option, value }) {
       parseFloat(futureValue.split(',').join('')),
     );
 
+    // rate, payment, present, future
+
+    const nper = getNPER(
+      convertToDecimal(interest),
+      payment.split(',').join(''),
+      presentValue.split(',').join(''),
+      futureValue.split(',').join(''),
+    );
+
+    console.log(nper);
+
     if (option === 'PV') {
       setCalculate(pv);
     } else if (option === 'FV') {
       setCalculate(fv);
     } else if (option === 'PMT') {
       setCalculate(pmt);
+    } else if (option === "Periods") {
+      setCalculate(nper);
     } else {
       setCalculate((rate * 100));
     }
@@ -167,7 +181,21 @@ export default function Calculator({ option, value }) {
       value: [futureValue, presentValue, payment, periods],
       label: ['Future Value', 'Present Value', 'Payment', 'Periods'],
     },
+    Periods: {
+      functions: [
+        handleChangeInterest,
+        handleChangePayment,
+        handleChangePV,
+        handleChangeFV,
+      ],
+      value: [interest, payment, presentValue, futureValue],
+      label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value'],
+    },
   };
+  // convertToDecimal(interest),
+  //       payment.split(',').join(''),
+  //       presentValue.split(',').join(''),
+  //       futureValue.split(',').join(''),
 
   return (
     <CalcWrapper isCalculated={isCalculated}>

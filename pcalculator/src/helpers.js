@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-var */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-eval */
@@ -192,6 +194,59 @@ export const rateTable = (periods, pv, pmt, interest) => {
     }
   );
 };
+// rate, payment, present, future,
+export const periodsTable = (periods, bb, pmt, interest, fv) => {
+  let count = 1;
+  const pvArr = [];
+  const interestArr = [];
+  const fvArr = [];
+  const pmtArr = [];
+  const periodArr = [];
+
+  while (count <= periods) {
+    let periodInterest = bb * interest;
+    let eb = bb - (-toNegative(pmt) - periodInterest);
+
+    if (count === 1) {
+      pvArr.push(bb.toFixed(2));
+      fvArr.push(toNegative(eb.toFixed(2)));
+      interestArr.push(periodInterest.toFixed(2));
+    } else {
+      bb = eb;
+      periodInterest = bb * interest;
+      eb = bb - (-toNegative(pmt) - periodInterest);
+      fvArr.push(toNegative(eb.toFixed(2)));
+      pvArr.push(bb.toFixed(2));
+      interestArr.push(periodInterest.toFixed(2));
+    }
+    pmtArr.push(toNegative(pmt).toFixed(2));
+    periodArr.push(count);
+
+    count++;
+  }
+
+  periodArr.push(periods);
+  pvArr.push(fvArr[fvArr.length - 1]);
+
+  const decimal = Math.floor(periods) - periods;
+
+  pmtArr.push((pmt * decimal).toFixed(2));
+
+  const finalPeriodInterest = (fvArr[fvArr.length - 1] - fv) + (pmt * decimal);
+
+  interestArr.push(toNegative(finalPeriodInterest).toFixed(2));
+  fvArr.push(fv);
+
+  return (
+    {
+      Period: periodArr,
+      PV: pvArr,
+      PMT: pmtArr,
+      Interest: interestArr,
+      FV: fvArr,
+    }
+  );
+};
 
 export const conv_number = (expr, decplaces) => {
   let str = `${Math.round(eval(expr) * Math.pow(10, decplaces))}`;
@@ -316,4 +371,16 @@ export const getRate = (periods, payment, present, future, type, guess) => {
     ++i;
   }
   return rate;
+};
+
+export const getNPER = (rate, payment, present, future, type) => {
+  var type = (typeof type === 'undefined') ? 0 : type;
+
+  var future = (typeof future === 'undefined') ? 0 : future;
+
+  rate = eval(rate);
+
+  const num = payment * (1 + rate * type) - future * rate;
+  const den = (present * rate + payment * (1 + rate * type));
+  return Math.log(num / den) / Math.log(1 + rate);
 };

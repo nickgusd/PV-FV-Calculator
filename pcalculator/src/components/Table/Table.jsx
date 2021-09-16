@@ -24,6 +24,8 @@ import {
   pvTable,
   fvTable,
   pmtTable,
+  rateTable,
+  periodsTable,
 } from '../../helpers';
 
 import {
@@ -34,6 +36,7 @@ import {
   presentValueState,
   tableDataState,
   isCalculatedState,
+  futureValueState,
 } from '../../store';
 
 const useStyles = makeStyles({
@@ -70,11 +73,11 @@ export default function BasicTable({ option }) {
 
   const beginningBalance = useRecoilValue(calculateState);
   const presentVal = useRecoilValue(presentValueState);
-  const periods = useRecoilValue(periodsState);
+  const periods = useRecoilValue(periodsState) || Math.ceil(beginningBalance);
   const interest = useRecoilValue(interestState);
   const payment = useRecoilValue(paymentState);
   const calculated = useRecoilValue(calculateState);
-  const isCalculated = useRecoilValue(isCalculatedState);
+  const futureVal = useRecoilValue(futureValueState);
 
   let tableDataObj;
 
@@ -89,7 +92,10 @@ export default function BasicTable({ option }) {
       tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(beginningBalance.split(',').join('')), convertToDecimal(interest));
       break;
     case "Rate":
-      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      tableDataObj = rateTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+      break;
+    case "Periods":
+      tableDataObj = periodsTable(beginningBalance, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(interest), futureVal);
       break;
     default:
       tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
@@ -125,9 +131,16 @@ export default function BasicTable({ option }) {
           <TableBody>
             {tableData.map((row) => (
               <TableRow key={row.name}>
-                {headers.map((item) => (
-                  <TableCell className={classes.tCell}>{numberWithCommas(row[item.toLowerCase()])}</TableCell>
-                ))}
+                {headers.map((item) => {
+                  if (item === "Period") {
+                    return (
+                      <TableCell className={classes.tCell}>{row[item.toLowerCase()]}</TableCell>
+                    );
+                  }
+                  return (
+                    <TableCell className={classes.tCell}>{numberWithCommas(row[item.toLowerCase()])}</TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
