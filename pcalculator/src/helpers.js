@@ -194,7 +194,7 @@ export const rateTable = (periods, pv, pmt, interest) => {
     }
   );
 };
-// rate, payment, present, future,
+
 export const periodsTable = (periods, bb, pmt, interest, fv) => {
   let count = 1;
   const pvArr = [];
