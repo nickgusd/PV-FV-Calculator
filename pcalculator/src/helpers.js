@@ -195,7 +195,7 @@ export const rateTable = (periods, pv, pmt, interest) => {
   );
 };
 // rate, payment, present, future,
-export const periodsTable = (periods, bb, pmt, interest) => {
+export const periodsTable = (periods, bb, pmt, interest, fv) => {
   let count = 1;
   const pvArr = [];
   const interestArr = [];
@@ -224,6 +224,18 @@ export const periodsTable = (periods, bb, pmt, interest) => {
 
     count++;
   }
+
+  periodArr.push(periods);
+  pvArr.push(fvArr[fvArr.length - 1]);
+
+  const decimal = Math.floor(periods) - periods;
+
+  pmtArr.push((pmt * decimal).toFixed(2));
+
+  const finalPeriodInterest = (fvArr[fvArr.length - 1] - fv) + (pmt * decimal);
+
+  interestArr.push(toNegative(finalPeriodInterest).toFixed(2));
+  fvArr.push(fv);
 
   return (
     {
