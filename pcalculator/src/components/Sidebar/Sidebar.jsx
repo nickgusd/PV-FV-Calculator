@@ -52,6 +52,8 @@ export default function Sidebar() {
       return "Future Value";
     } if (option === "PMT") {
       return "Payments";
+    } if (option === "Periods") {
+      return "Periods";
     }
     return "Interest";
   };
