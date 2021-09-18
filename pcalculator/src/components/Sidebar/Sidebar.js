@@ -4,8 +4,9 @@ export const Container = styled.div`
 width: 200px;
 border: 1px solid black;
 background: #1C5253;
-height: ${(props) => (props.calculated ? '500vw' : '100vw')};
-overflow: hidden;
+min-height: 100vw;
+position: fixed;
+overflow: auto;
 `;
 
 export const Wrapper = styled.div`
