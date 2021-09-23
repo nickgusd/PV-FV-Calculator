@@ -35,7 +35,6 @@ import {
   calculateState,
   presentValueState,
   tableDataState,
-  isCalculatedState,
   futureValueState,
 } from '../../store';
 
@@ -49,6 +48,7 @@ const useStyles = makeStyles({
   tContainer: {
     background: 'white',
     marginTop: '50px',
+    paddingBottom: '50px',
   },
   rowHeader: {
     border: '1px solid black',

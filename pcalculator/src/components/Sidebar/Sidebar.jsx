@@ -8,7 +8,6 @@ import {
   useRecoilValue,
 } from "recoil";
 import {
-  isCalculatedState,
   optionState,
 } from "../../store";
 
@@ -21,7 +20,7 @@ import {
 export default function Sidebar() {
   const [active, setActive] = useState([]);
   const readOption = useRecoilValue(optionState);
-  const readCalculatedState = useRecoilValue(isCalculatedState);
+
   const arr = [
     {
       type: "Present Value",
@@ -84,7 +83,7 @@ export default function Sidebar() {
 
   if (active.length > 0) {
     return (
-      <Container calculated={readCalculatedState}>
+      <Container>
         <Wrapper>
           {active.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
         </Wrapper>
