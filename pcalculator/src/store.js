@@ -1,6 +1,5 @@
 import {
   atom,
-  selector,
 } from 'recoil';
 
 export const futureValueState = atom({
@@ -46,12 +45,4 @@ export const optionState = atom({
 export const tableDataState = atom({
   key: "data",
   default: [],
-});
-
-export const currentPVState = selector({
-  key: "roundPV",
-  get: ({ get }) => {
-    const pv = get(presentValueState);
-    return pv + 5;
-  },
 });
