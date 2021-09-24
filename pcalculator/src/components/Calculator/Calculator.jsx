@@ -155,6 +155,7 @@ export default function Calculator({ option, value }) {
 
   const handleClear = () => {
     setIsCalculated(false);
+    setCalculate(0);
   };
 
   const clearItem = (event) => {
