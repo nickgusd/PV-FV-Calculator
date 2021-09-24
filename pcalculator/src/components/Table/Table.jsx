@@ -79,8 +79,6 @@ export default function BasicTable({ option }) {
   const calculated = useRecoilValue(calculateState);
   const futureVal = useRecoilValue(futureValueState);
 
-  console.log(calculated);
-
   let tableDataObj;
 
   switch (option) {
