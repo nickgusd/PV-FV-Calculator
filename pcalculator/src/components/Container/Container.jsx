@@ -7,11 +7,13 @@ import {
 import {
   optionState,
   isCalculatedState,
+  calculateState,
 } from "../../store";
 
 import Calculator from "../Calculator/Calculator";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 import BasicTable from "../Table/Table";
+import Error from "../Error/Error";
 import { ContainerDiv } from "./Container";
 
 export default function Container() {
@@ -22,14 +24,16 @@ export default function Container() {
     setType(value);
   };
 
-  const calculatedState = useRecoilValue(isCalculatedState);
+  const IsCalculatedState = useRecoilValue(isCalculatedState);
+  const calculation = useRecoilValue(calculateState);
   const options = ["PV", "FV", "PMT", "Rate", "Periods"];
 
   return (
     <ContainerDiv>
       <Dropdown onChange={handleChange} options={options} />
       <Calculator option={type} value={options} />
-      {calculatedState ? <BasicTable option={type} /> : null}
+      { calculation === 'N.aN' ? <Error message="Please Enter Numeric Values!" /> : null}
+      {IsCalculatedState ? <BasicTable option={type} /> : null}
     </ContainerDiv>
   );
 }

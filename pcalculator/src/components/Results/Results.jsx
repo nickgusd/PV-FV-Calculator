@@ -4,6 +4,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
+// import Error from "../Error/Error";
+
 import {
   Container,
 } from "./Results";
@@ -41,6 +43,9 @@ export default function Results({ calculation, option, isCalculated }) {
                   {calculation.toFixed(3)}
                 </b>
               );
+            }
+            if (calculation === "N.aN") {
+              return null;
             }
             return (
               <b>
