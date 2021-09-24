@@ -8,16 +8,19 @@ import {
   useRecoilValue,
 } from "recoil";
 import {
+  optionState,
+} from "../../store";
+
+import {
   Container,
   Tab,
   Wrapper,
 } from "./Sidebar";
 
-import { optionState } from "../../store";
-
 export default function Sidebar() {
   const [active, setActive] = useState([]);
   const readOption = useRecoilValue(optionState);
+
   const arr = [
     {
       type: "Present Value",
@@ -48,6 +51,8 @@ export default function Sidebar() {
       return "Future Value";
     } if (option === "PMT") {
       return "Payments";
+    } if (option === "Periods") {
+      return "Periods";
     }
     return "Interest";
   };

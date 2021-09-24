@@ -4,7 +4,8 @@ export const Container = styled.div`
 width: 200px;
 border: 1px solid black;
 background: #1C5253;
-height: 100vw;
+min-height: 100vw;
+position: fixed;
 overflow: auto;
 `;
 

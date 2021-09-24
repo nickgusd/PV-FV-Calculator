@@ -1,11 +1,18 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/button-has-type */
 /* eslint-disable radix */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackspace } from '@fortawesome/free-solid-svg-icons';
+
 import Results from '../Results/Results.jsx';
 import {
-  DeleteBtn,
+  // IconBtn,
+  // DeleteBtn,
   CalcWrapper,
   Button,
   Input,
@@ -14,6 +21,7 @@ import {
   Container,
   BtnContainer,
   Hidden,
+  // Wrapper,
 } from './Calculator.style';
 
 import {
@@ -35,6 +43,15 @@ import {
   getNPER,
 } from '../../helpers';
 
+const iconStyle = {
+  height: '20px',
+  width: 'auto',
+  margin: '15px',
+  transform: 'scale(1.4)',
+  transition: 'all .2s ease-in-out',
+  pointerEvents: 'none',
+};
+
 export default function Calculator({ option, value }) {
   const [futureValue, setFutureValue] = useRecoilState(futureValueState);
   const [presentValue, setPresentValue] = useRecoilState(presentValueState);
@@ -53,6 +70,16 @@ export default function Calculator({ option, value }) {
     setPayment('');
     setIsCalculated(false);
   }, [option]);
+
+  const clearAll = () => {
+    setFutureValue('');
+    setPresentValue('');
+    setInterest('');
+    setPeriods('');
+    setCalculate('');
+    setPayment('');
+    setIsCalculated(false);
+  };
 
   const handleChangeFV = (event) => {
     const { value } = event.target;
@@ -105,16 +132,12 @@ export default function Calculator({ option, value }) {
       parseFloat(futureValue.split(',').join('')),
     );
 
-    // rate, payment, present, future
-
     const nper = getNPER(
       convertToDecimal(interest),
       payment.split(',').join(''),
       presentValue.split(',').join(''),
       futureValue.split(',').join(''),
     );
-
-    console.log(nper);
 
     if (option === 'PV') {
       setCalculate(pv);
@@ -192,10 +215,6 @@ export default function Calculator({ option, value }) {
       label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value'],
     },
   };
-  // convertToDecimal(interest),
-  //       payment.split(',').join(''),
-  //       presentValue.split(',').join(''),
-  //       futureValue.split(',').join(''),
 
   return (
     <CalcWrapper isCalculated={isCalculated}>
@@ -228,7 +247,9 @@ export default function Calculator({ option, value }) {
                   {test[item].label.map((step) => (
                     <>
                       <Hidden htmlfor={step}>#</Hidden>
-                      <DeleteBtn id={step} onClick={clearItem} />
+                      <div id={step} onClick={clearItem} onKeyDown={clearItem}>
+                        <FontAwesomeIcon icon={faBackspace} id={step} style={iconStyle} />
+                      </div>
                     </>
                   ))}
                 </BtnContainer>
@@ -243,9 +264,14 @@ export default function Calculator({ option, value }) {
           Reset
         </Button>
       ) : (
-        <Button className="button" onClick={handleClick}>
-          Calculate
-        </Button>
+        <div>
+          <Button className="button" onClick={handleClick}>
+            Calculate
+          </Button>
+          <Button className="button" onClick={clearAll} clear>
+            Clear
+          </Button>
+        </div>
       )}
       {parseInt(calculate) === 0 && isCalculated ? (
         <div style={{ color: 'red' }}>

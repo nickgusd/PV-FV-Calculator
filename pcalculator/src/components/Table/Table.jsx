@@ -35,7 +35,6 @@ import {
   calculateState,
   presentValueState,
   tableDataState,
-  isCalculatedState,
   futureValueState,
 } from '../../store';
 
@@ -49,6 +48,7 @@ const useStyles = makeStyles({
   tContainer: {
     background: 'white',
     marginTop: '50px',
+    paddingBottom: '50px',
   },
   rowHeader: {
     border: '1px solid black',
@@ -117,7 +117,7 @@ export default function BasicTable({ option }) {
     setTableData(data);
   }, []);
 
-  if (tableData.length > 0) {
+  if (tableData.length > 0 && calculated !== 'N.aN') {
     return (
       <TableContainer component={Paper} className={classes.tContainer}>
         <Table className={classes.table} aria-label="simple table">

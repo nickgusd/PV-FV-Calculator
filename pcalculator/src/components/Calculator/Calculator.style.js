@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import { Delete } from "@styled-icons/typicons/Delete";
 
+export const Wrapper = styled.div``;
+
 export const DeleteBtn = styled(Delete)`
 height: 21px;
 width: auto;
 margin: 15px;
 transform: scale(1.4);
 transition: all .2s ease-in-out;
+pointer-events: 'none' !important;
+border: 1px solid black;
 
 &:hover {
     transform: scale(1.7);
@@ -34,8 +38,9 @@ margin: 0 auto;
 `;
 
 export const Button = styled.button`
-margin-bottom: 20px;
-background-color: #76B041;
+margin-bottom: 20px !important;
+margin: 10px;
+background-color: ${(props) => (props.clear ? '#d62246' : '#76B041')};
 height: 25px;
 width: 100px;
 border: none;
