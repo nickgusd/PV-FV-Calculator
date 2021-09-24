@@ -71,6 +71,16 @@ export default function Calculator({ option, value }) {
     setIsCalculated(false);
   }, [option]);
 
+  const clearAll = () => {
+    setFutureValue('');
+    setPresentValue('');
+    setInterest('');
+    setPeriods('');
+    setCalculate('');
+    setPayment('');
+    setIsCalculated(false);
+  };
+
   const handleChangeFV = (event) => {
     const { value } = event.target;
     setFutureValue(value);
@@ -254,9 +264,14 @@ export default function Calculator({ option, value }) {
           Reset
         </Button>
       ) : (
-        <Button className="button" onClick={handleClick}>
-          Calculate
-        </Button>
+        <div>
+          <Button className="button" onClick={handleClick}>
+            Calculate
+          </Button>
+          <Button className="button" onClick={clearAll} clear>
+            Clear
+          </Button>
+        </div>
       )}
       {parseInt(calculate) === 0 && isCalculated ? (
         <div style={{ color: 'red' }}>

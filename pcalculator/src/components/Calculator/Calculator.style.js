@@ -38,8 +38,9 @@ margin: 0 auto;
 `;
 
 export const Button = styled.button`
-margin-bottom: 20px;
-background-color: #76B041;
+margin-bottom: 20px !important;
+margin: 10px;
+background-color: ${(props) => (props.clear ? '#d62246' : '#76B041')};
 height: 25px;
 width: 100px;
 border: none;

@@ -79,6 +79,8 @@ export default function BasicTable({ option }) {
   const calculated = useRecoilValue(calculateState);
   const futureVal = useRecoilValue(futureValueState);
 
+  console.log(calculated);
+
   let tableDataObj;
 
   switch (option) {
@@ -117,7 +119,7 @@ export default function BasicTable({ option }) {
     setTableData(data);
   }, []);
 
-  if (tableData.length > 0) {
+  if (tableData.length > 0 && calculated !== 'N.aN') {
     return (
       <TableContainer component={Paper} className={classes.tContainer}>
         <Table className={classes.table} aria-label="simple table">
