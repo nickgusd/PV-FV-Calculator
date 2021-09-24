@@ -117,7 +117,7 @@ export default function BasicTable({ option }) {
     setTableData(data);
   }, []);
 
-  if (tableData.length > 0 && calculated !== 'N.aN') {
+  if (tableData.length > 0) {
     return (
       <TableContainer component={Paper} className={classes.tContainer}>
         <Table className={classes.table} aria-label="simple table">

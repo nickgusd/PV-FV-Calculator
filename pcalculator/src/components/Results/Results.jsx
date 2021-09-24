@@ -44,7 +44,7 @@ export default function Results({ calculation, option, isCalculated }) {
                 </b>
               );
             }
-            if (calculation === "N.aN") {
+            if (calculation === "N.aN" || calculation.toString() === 'NaN') {
               return null;
             }
             return (
