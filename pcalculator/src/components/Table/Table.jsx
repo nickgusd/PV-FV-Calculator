@@ -79,6 +79,8 @@ export default function BasicTable({ option }) {
   const calculated = useRecoilValue(calculateState);
   const futureVal = useRecoilValue(futureValueState);
 
+  // console.log(calculated, option);
+
   let tableDataObj;
 
   switch (option) {
@@ -116,6 +118,14 @@ export default function BasicTable({ option }) {
   useEffect(() => {
     setTableData(data);
   }, []);
+
+  if (option === 'Rate' && calculated === 1) {
+    return null;
+  }
+
+  if (calculated.toString() === 'N.aN' || calculated.toString() === 'NaN') {
+    return null;
+  }
 
   if (tableData.length > 0) {
     return (

@@ -17,6 +17,10 @@ import {
 export default function Results({ calculation, option, isCalculated }) {
   const choices = ["PV", "FV", "PMT", "Rate", "Periods"];
 
+  if (option === 'Rate' && calculation === 1) {
+    return null;
+  }
+
   if (parseInt(calculation) !== 0) {
     return (
       <Container>
