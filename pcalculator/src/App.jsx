@@ -4,13 +4,13 @@ import {
   RecoilRoot,
 } from 'recoil';
 
-import Navbar from "./components/Navbar/Navbar.jsx";
+// import Navbar from "./components/Navbar/Navbar.jsx";
 import Main from "./components/Main/Main.jsx";
 
 function App() {
   return (
     <RecoilRoot>
-      <Navbar />
+      {/* <Navbar /> */}
       <Main />
     </RecoilRoot>
   );

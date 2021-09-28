@@ -6,32 +6,24 @@ import {
   Route,
 } from "react-router-dom";
 
-import { useRecoilValue } from 'recoil';
-import Container from "../Container/Container.jsx";
-import Sidebar from "../Sidebar/Sidebar.jsx";
-import {
-  Wrapper,
-} from "./Main";
-import {
-  isCalculatedState,
-} from "../../store";
+import NotFound from "../../pages/NotFound";
+import Navbar from "../Navbar/Navbar.jsx";
+import Home from "../../pages/Home";
 
 export default function Main() {
-  const isCalculated = useRecoilValue(isCalculatedState);
-
   return (
-    <Wrapper isCalculated={isCalculated}>
+    <>
       <Router>
         <Switch>
           <Route exact path="/">
-            <Sidebar />
-            <Container />
+            <Navbar />
+            <Home />
           </Route>
           <Route path="*">
-            <h1>Hello World</h1>
+            <NotFound />
           </Route>
         </Switch>
       </Router>
-    </Wrapper>
+    </>
   );
 }
