@@ -1,4 +1,11 @@
 import React from "react";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
 import { useRecoilValue } from 'recoil';
 import Container from "../Container/Container.jsx";
 import Sidebar from "../Sidebar/Sidebar.jsx";
@@ -14,8 +21,17 @@ export default function Main() {
 
   return (
     <Wrapper isCalculated={isCalculated}>
-      <Sidebar />
-      <Container />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Sidebar />
+            <Container />
+          </Route>
+          <Route path="*">
+            <h1>Hello World</h1>
+          </Route>
+        </Switch>
+      </Router>
     </Wrapper>
   );
 }

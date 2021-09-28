@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
 width: 200px;
@@ -14,6 +15,14 @@ position: fixed;
 width: 200px;
 `;
 
+export const StyledLink = styled(Link)`
+text-decoration: none;
+
+&:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+}
+`;
+
 export const Tab = styled.div`
 height: 50px;
 border-bottom: 1px solid #757575;
@@ -23,4 +32,7 @@ align-items: center;
 color: white;
 font-size: 16px;
 background: ${(props) => (props.active ? "#76B041" : "#1C5253")};
+cursor: pointer;
+user-select: none;
+text-decoration: none;
 `;

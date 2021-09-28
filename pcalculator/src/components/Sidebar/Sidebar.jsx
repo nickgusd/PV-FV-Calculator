@@ -15,6 +15,7 @@ import {
   Container,
   Tab,
   Wrapper,
+  StyledLink,
 } from "./Sidebar";
 
 export default function Sidebar() {
@@ -85,7 +86,11 @@ export default function Sidebar() {
     return (
       <Container>
         <Wrapper>
-          {active.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+          {active.map((item, idx) => (
+            <StyledLink to={`/?calculation=${item.type.toLowerCase()}`}>
+              <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>
+            </StyledLink>
+          ))}
         </Wrapper>
       </Container>
     );
@@ -93,7 +98,11 @@ export default function Sidebar() {
   return (
     <Container>
       <Wrapper>
-        {arr.map((item, idx) => <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>)}
+        {arr.map((item, idx) => (
+          <StyledLink to={`/?calculation=${item.type.toLowerCase()}`}>
+            <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>
+          </StyledLink>
+        ))}
       </Wrapper>
     </Container>
   );
