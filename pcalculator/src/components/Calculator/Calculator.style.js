@@ -19,7 +19,7 @@ border: 1px solid black;
 
 export const CalcWrapper = styled.div`
 text-align: center;
-width: 30vw;
+width: 432px;
 display: block;
 margin: 0 auto;
 margin-top: 20px;
@@ -33,7 +33,7 @@ color: white;
 export const Container = styled.div`
 display: flex;
 flex-direction: row;
-width: 18vw;
+width: 260px;
 margin: 0 auto;
 `;
 

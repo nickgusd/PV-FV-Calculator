@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 
 export default function Error({ message }) {
   return (
-    <Stack sx={{ width: '30vw', margin: '0 auto', marginTop: '20px' }} spacing={2}>
+    <Stack sx={{ width: '432px', margin: '0 auto', marginTop: '20px' }} spacing={2}>
       <Alert severity="error">
         <AlertTitle><b>Error</b></AlertTitle>
         <strong>{message}</strong>

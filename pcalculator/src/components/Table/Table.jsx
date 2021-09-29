@@ -40,7 +40,7 @@ import {
 
 const useStyles = makeStyles({
   table: {
-    width: '18vw !important',
+    width: '260px !important',
     margin: '0 auto',
     border: '1px solid black',
 
