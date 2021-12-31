@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/button-has-type */
 /* eslint-disable radix */
 /* eslint-disable no-shadow */
@@ -11,8 +10,6 @@ import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 
 import Results from '../Results/Results.jsx';
 import {
-  // IconBtn,
-  // DeleteBtn,
   CalcWrapper,
   Button,
   Input,
@@ -20,8 +17,7 @@ import {
   InputContainer,
   Container,
   BtnContainer,
-  Hidden,
-  // Wrapper,
+  Hidden
 } from './Calculator.style';
 
 import {
@@ -31,7 +27,7 @@ import {
   periodsState,
   paymentState,
   calculateState,
-  isCalculatedState,
+  isCalculatedState
 } from '../../store';
 
 import {
@@ -40,7 +36,7 @@ import {
   getFutureValue,
   getPmt,
   getRate,
-  getNPER,
+  getNPER
 } from '../../helpers';
 
 const iconStyle = {
@@ -49,7 +45,7 @@ const iconStyle = {
   margin: '15px',
   transform: 'scale(1.4)',
   transition: 'all .2s ease-in-out',
-  pointerEvents: 'none',
+  pointerEvents: 'none'
 };
 
 export default function Calculator({ option, value }) {
@@ -111,32 +107,32 @@ export default function Calculator({ option, value }) {
       convertToDecimal(interest),
       periods.split(',').join(''),
       payment.split(',').join(''),
-      futureValue.split(',').join(''),
+      futureValue.split(',').join('')
     );
     const fv = getFutureValue(
       convertToDecimal(interest),
       periods.split(',').join(''),
       payment.split(',').join(''),
-      presentValue.split(',').join(''),
+      presentValue.split(',').join('')
     );
     const pmt = getPmt(
       convertToDecimal(parseFloat(interest)),
       parseFloat(periods),
       parseFloat(presentValue),
-      parseFloat(futureValue),
+      parseFloat(futureValue)
     );
     const rate = getRate(
       parseFloat(periods.split(',').join('')),
       parseFloat(payment.split(',').join('')),
       parseFloat(presentValue.split(',').join('')),
-      parseFloat(futureValue.split(',').join('')),
+      parseFloat(futureValue.split(',').join(''))
     );
 
     const nper = getNPER(
       convertToDecimal(interest),
       payment.split(',').join(''),
       presentValue.split(',').join(''),
-      futureValue.split(',').join(''),
+      futureValue.split(',').join('')
     );
 
     if (option === 'PV') {
@@ -145,10 +141,10 @@ export default function Calculator({ option, value }) {
       setCalculate(fv);
     } else if (option === 'PMT') {
       setCalculate(pmt);
-    } else if (option === "Periods") {
+    } else if (option === 'Periods') {
       setCalculate(nper);
     } else {
-      setCalculate((rate * 100));
+      setCalculate(rate * 100);
     }
     setIsCalculated(true);
   };
@@ -178,43 +174,28 @@ export default function Calculator({ option, value }) {
     PV: {
       functions: [handleChangeFV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [futureValue, interest, payment, periods],
-      label: ['Future Value', 'Interest Rate', 'Payment', 'Periods'],
+      label: ['Future Value', 'Interest Rate', 'Payment', 'Periods']
     },
     FV: {
       functions: [handleChangePV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [presentValue, interest, payment, periods],
-      label: ['Present Value', 'Interest Rate', 'Payment', 'Periods'],
+      label: ['Present Value', 'Interest Rate', 'Payment', 'Periods']
     },
     PMT: {
-      functions: [
-        handleChangeFV,
-        handleChangePV,
-        handleChangeInterest,
-        handleChangePeriods,
-      ],
+      functions: [handleChangeFV, handleChangePV, handleChangeInterest, handleChangePeriods],
       value: [futureValue, presentValue, interest, periods],
-      label: ['Future Value', 'Present Value', 'Interest Rate', 'Periods'],
+      label: ['Future Value', 'Present Value', 'Interest Rate', 'Periods']
     },
     Rate: {
-      functions: [
-        handleChangeFV,
-        handleChangePV,
-        handleChangePayment,
-        handleChangePeriods,
-      ],
+      functions: [handleChangeFV, handleChangePV, handleChangePayment, handleChangePeriods],
       value: [futureValue, presentValue, payment, periods],
-      label: ['Future Value', 'Present Value', 'Payment', 'Periods'],
+      label: ['Future Value', 'Present Value', 'Payment', 'Periods']
     },
     Periods: {
-      functions: [
-        handleChangeInterest,
-        handleChangePayment,
-        handleChangePV,
-        handleChangeFV,
-      ],
+      functions: [handleChangeInterest, handleChangePayment, handleChangePV, handleChangeFV],
       value: [interest, payment, presentValue, futureValue],
-      label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value'],
-    },
+      label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value']
+    }
   };
 
   return (
@@ -223,18 +204,12 @@ export default function Calculator({ option, value }) {
         if (item === option) {
           return (
             <>
-              <h1>
-                {item}
-                {' '}
-                Calculator
-              </h1>
+              <h1>{item} Calculator</h1>
               <Container>
                 <InputContainer>
                   {test[item].functions.map((thing, index) => (
                     <>
-                      <Label for={test[item]}>
-                        {test[item].label[index]}
-                      </Label>
+                      <Label for={test[item]}>{test[item].label[index]}</Label>
                       <Input
                         type="text"
                         id={test[item]}
@@ -279,11 +254,7 @@ export default function Calculator({ option, value }) {
           <b>Please enter numeric values</b>
         </div>
       ) : (
-        <Results
-          calculation={calculate}
-          option={option}
-          isCalculated={isCalculated}
-        />
+        <Results calculation={calculate} option={option} isCalculated={isCalculated} />
       )}
     </CalcWrapper>
   );

@@ -2,21 +2,12 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import {
-  useRecoilValue,
-} from "recoil";
-import {
-  optionState,
-} from "../../store";
+import { useRecoilValue } from 'recoil';
+import { optionState } from '../../store';
 
-import {
-  Container,
-  Tab,
-  Wrapper,
-  StyledLink,
-} from "./Sidebar";
+import { Container, Tab, Wrapper, StyledLink } from './Sidebar';
 
 export default function Sidebar() {
   const [active, setActive] = useState([]);
@@ -24,38 +15,41 @@ export default function Sidebar() {
 
   const arr = [
     {
-      type: "Present Value",
-      active: true,
+      type: 'Present Value',
+      active: true
     },
     {
-      type: "Future Value",
-      active: false,
+      type: 'Future Value',
+      active: false
     },
     {
-      type: "Payments",
-      active: false,
+      type: 'Payments',
+      active: false
     },
     {
-      type: "Interest",
-      active: false,
+      type: 'Interest',
+      active: false
     },
     {
-      type: "Periods",
-      active: false,
-    },
+      type: 'Periods',
+      active: false
+    }
   ];
 
   const changeType = (option) => {
-    if (option === "PV") {
-      return "Present Value";
-    } if (option === "FV") {
-      return "Future Value";
-    } if (option === "PMT") {
-      return "Payments";
-    } if (option === "Periods") {
-      return "Periods";
+    if (option === 'PV') {
+      return 'Present Value';
     }
-    return "Interest";
+    if (option === 'FV') {
+      return 'Future Value';
+    }
+    if (option === 'PMT') {
+      return 'Payments';
+    }
+    if (option === 'Periods') {
+      return 'Periods';
+    }
+    return 'Interest';
   };
 
   useEffect(() => {
@@ -87,8 +81,10 @@ export default function Sidebar() {
       <Container>
         <Wrapper>
           {active.map((item, idx) => (
-            <StyledLink to={`/?calculation=${item.type.toLowerCase()}`}>
-              <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>
+            <StyledLink to={`/?calculation=${item.type.toLowerCase()}`} key={idx}>
+              <Tab onClick={handleClick} active={item.active}>
+                {item.type}
+              </Tab>
             </StyledLink>
           ))}
         </Wrapper>
@@ -99,8 +95,10 @@ export default function Sidebar() {
     <Container>
       <Wrapper>
         {arr.map((item, idx) => (
-          <StyledLink to={`/?calculation=${item.type.toLowerCase()}`}>
-            <Tab onClick={handleClick} active={item.active}>{item.type}</Tab>
+          <StyledLink to={`/?calculation=${item.type.toLowerCase()}`} key={idx}>
+            <Tab onClick={handleClick} active={item.active}>
+              {item.type}
+            </Tab>
           </StyledLink>
         ))}
       </Wrapper>

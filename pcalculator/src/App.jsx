@@ -1,16 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import {
-  RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
-// import Navbar from "./components/Navbar/Navbar.jsx";
-import Main from "./components/Main/Main.jsx";
+import Main from './components/Main/Main.jsx';
 
 function App() {
   return (
     <RecoilRoot>
-      {/* <Navbar /> */}
       <Main />
     </RecoilRoot>
   );

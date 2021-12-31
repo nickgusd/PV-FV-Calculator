@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
-    },
+      margin: theme.spacing(1)
+    }
   },
   btn: {
-    background: "lightgray",
-  },
+    background: 'lightgray'
+  }
 }));
 
 export default function ClearButton() {
@@ -18,7 +18,9 @@ export default function ClearButton() {
 
   return (
     <div className={classes.root}>
-      <Button variant="outlined" className={classes.btn}>Default</Button>
+      <Button variant="outlined" className={classes.btn}>
+        Default
+      </Button>
     </div>
   );
 }

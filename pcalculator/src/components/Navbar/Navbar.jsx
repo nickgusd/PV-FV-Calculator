@@ -1,15 +1,10 @@
-import React from "react";
-import {
-  Nav,
-  Title,
-} from "./Navbar";
+import React from 'react';
+import { Nav, Title } from './Navbar';
 
 export default function Navbar() {
   return (
     <Nav>
-      <Title>
-        Financial Calculator
-      </Title>
+      <Title>Financial Calculator</Title>
     </Nav>
   );
 }
