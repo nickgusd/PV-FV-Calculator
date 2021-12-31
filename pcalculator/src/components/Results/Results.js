@@ -1,6 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
 export const Container = styled.div`
-margin-bottom: 15px;
+  margin-bottom: 15px;
 `;

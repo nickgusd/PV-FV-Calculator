@@ -8,7 +8,9 @@ export default function Error({ message }) {
   return (
     <Stack sx={{ width: '432px', margin: '0 auto', marginTop: '20px' }} spacing={2}>
       <Alert severity="error">
-        <AlertTitle><b>Error</b></AlertTitle>
+        <AlertTitle>
+          <b>Error</b>
+        </AlertTitle>
         <strong>{message}</strong>
       </Alert>
     </Stack>

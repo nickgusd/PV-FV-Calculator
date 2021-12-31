@@ -61,15 +61,13 @@ export const pvTable = (periods, bb, pmt, interest) => {
     count++;
   }
 
-  return (
-    {
-      Period: periodArr,
-      PV: pvArr,
-      PMT: pmtArr,
-      Interest: interestArr,
-      FV: fvArr,
-    }
-  );
+  return {
+    Period: periodArr,
+    PV: pvArr,
+    PMT: pmtArr,
+    Interest: interestArr,
+    FV: fvArr
+  };
 };
 
 export const fvTable = (periods, pv, pmt, interest) => {
@@ -102,15 +100,13 @@ export const fvTable = (periods, pv, pmt, interest) => {
     count++;
   }
 
-  return (
-    {
-      Period: periodArr,
-      PV: pvArr,
-      PMT: pmtArr,
-      Interest: interestArr,
-      FV: fvArr,
-    }
-  );
+  return {
+    Period: periodArr,
+    PV: pvArr,
+    PMT: pmtArr,
+    Interest: interestArr,
+    FV: fvArr
+  };
 };
 
 export const pmtTable = (periods, pv, pmt, interest) => {
@@ -143,15 +139,13 @@ export const pmtTable = (periods, pv, pmt, interest) => {
     count++;
   }
 
-  return (
-    {
-      Period: periodArr,
-      PV: pvArr,
-      PMT: pmtArr,
-      Interest: interestArr,
-      FV: fvArr,
-    }
-  );
+  return {
+    Period: periodArr,
+    PV: pvArr,
+    PMT: pmtArr,
+    Interest: interestArr,
+    FV: fvArr
+  };
 };
 
 export const rateTable = (periods, pv, pmt, interest) => {
@@ -184,15 +178,13 @@ export const rateTable = (periods, pv, pmt, interest) => {
     count++;
   }
 
-  return (
-    {
-      Period: periodArr,
-      PV: pvArr,
-      PMT: pmtArr,
-      Interest: interestArr,
-      FV: fvArr,
-    }
-  );
+  return {
+    Period: periodArr,
+    PV: pvArr,
+    PMT: pmtArr,
+    Interest: interestArr,
+    FV: fvArr
+  };
 };
 
 export const periodsTable = (periods, bb, pmt, interest, fv) => {
@@ -232,20 +224,18 @@ export const periodsTable = (periods, bb, pmt, interest, fv) => {
 
   pmtArr.push((pmt * decimal).toFixed(2));
 
-  const finalPeriodInterest = (fvArr[fvArr.length - 1] - fv) + (pmt * decimal);
+  const finalPeriodInterest = fvArr[fvArr.length - 1] - fv + pmt * decimal;
 
   interestArr.push(toNegative(finalPeriodInterest).toFixed(2));
   fvArr.push(fv);
 
-  return (
-    {
-      Period: periodArr,
-      PV: pvArr,
-      PMT: pmtArr,
-      Interest: interestArr,
-      FV: fvArr,
-    }
-  );
+  return {
+    Period: periodArr,
+    PV: pvArr,
+    PMT: pmtArr,
+    Interest: interestArr,
+    FV: fvArr
+  };
 };
 
 export const conv_number = (expr, decplaces) => {
@@ -255,22 +245,24 @@ export const conv_number = (expr, decplaces) => {
   }
 
   const decpoint = str.length - decplaces;
-  return (`${str.substring(0, decpoint)}.${str.substring(decpoint, str.length)}`);
+  return `${str.substring(0, decpoint)}.${str.substring(decpoint, str.length)}`;
 };
 
 export const getPresentValue = (rate, nper, pmt, fv) => {
-  let pv_value; let x; let
-    y;
+  let pv_value;
+  let x;
+  let y;
   rate = parseFloat(rate);
   nper = parseFloat(nper);
   pmt = parseFloat(pmt);
   fv = parseFloat(fv);
   if (nper === 0) {
     alert('Why do you want to test me with zeros?');
-    return (0);
+    return 0;
   }
-  if (rate === 0) { // Interest rate is 0
-    pv_value = -(fv + (pmt * nper));
+  if (rate === 0) {
+    // Interest rate is 0
+    pv_value = -(fv + pmt * nper);
   } else {
     x = Math.pow(1 + rate, -nper);
     y = Math.pow(1 + rate, nper);
@@ -282,17 +274,19 @@ export const getPresentValue = (rate, nper, pmt, fv) => {
 
 export const getFutureValue = (rate, nper, pmt, pv) => {
   // eslint-disable-next-line no-unused-vars
-  let fv_value; let x; let y;
+  let fv_value;
+  let x;
   rate = parseFloat(rate);
   nper = parseFloat(nper);
   pmt = parseFloat(pmt);
   pv = parseFloat(pv);
   if (nper === 0) {
     alert('Why do you want to test me with zeros?');
-    return (0);
+    return 0;
   }
-  if (rate === 0) { // Interest rate is 0
-    fv_value = -(pv + (pmt * nper));
+  if (rate === 0) {
+    // Interest rate is 0
+    fv_value = -(pv + pmt * nper);
   } else {
     x = Math.pow(1 + rate, nper);
     fv_value = -(-pmt + x * pmt + rate * x * pv) / rate;
@@ -301,22 +295,18 @@ export const getFutureValue = (rate, nper, pmt, pv) => {
   return fv_value;
 };
 
-export const getPmt = (
-  rate_per_period,
-  number_of_payments,
-  present_value,
-  future_value,
-  type,
-) => {
+export const getPmt = (rate_per_period, number_of_payments, present_value, future_value, type) => {
   future_value = typeof future_value !== 'undefined' ? future_value : 0;
   type = typeof type !== 'undefined' ? type : 0;
 
   if (rate_per_period !== 0.0) {
     const q = Math.pow(1 + rate_per_period, number_of_payments);
-    const answer = -(rate_per_period * (future_value + q * present_value))
-        / ((-1 + q) * (1 + rate_per_period * type));
+    const answer =
+      -(rate_per_period * (future_value + q * present_value)) /
+      ((-1 + q) * (1 + rate_per_period * type));
     return numberWithCommas(answer.toFixed(2));
-  } if (number_of_payments !== 0.0) {
+  }
+  if (number_of_payments !== 0.0) {
     const answer = -(future_value + present_value) / number_of_payments;
     return numberWithCommas(answer.toFixed(2));
   }
@@ -342,9 +332,7 @@ export const getRate = (periods, payment, present, future, type, guess) => {
   let i = 0;
   let rate = guess;
   if (Math.abs(rate) < epsMax) {
-    y = present * (1 + periods * rate)
-        + payment * (1 + rate * type) * periods
-        + future;
+    y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
   } else {
     f = Math.exp(periods * Math.log(1 + rate));
     y = present * f + payment * (1 / rate + type) * (f - 1) + future;
@@ -359,9 +347,7 @@ export const getRate = (periods, payment, present, future, type, guess) => {
     x0 = x1;
     x1 = rate;
     if (Math.abs(rate) < epsMax) {
-      y = present * (1 + periods * rate)
-          + payment * (1 + rate * type) * periods
-          + future;
+      y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
     } else {
       f = Math.exp(periods * Math.log(1 + rate));
       y = present * f + payment * (1 / rate + type) * (f - 1) + future;
@@ -374,13 +360,13 @@ export const getRate = (periods, payment, present, future, type, guess) => {
 };
 
 export const getNPER = (rate, payment, present, future, type) => {
-  var type = (typeof type === 'undefined') ? 0 : type;
+  var type = typeof type === 'undefined' ? 0 : type;
 
-  var future = (typeof future === 'undefined') ? 0 : future;
+  var future = typeof future === 'undefined' ? 0 : future;
 
   rate = eval(rate);
 
   const num = payment * (1 + rate * type) - future * rate;
-  const den = (present * rate + payment * (1 + rate * type));
+  const den = present * rate + payment * (1 + rate * type);
   return Math.log(num / den) / Math.log(1 + rate);
 };

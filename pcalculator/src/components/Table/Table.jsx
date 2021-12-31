@@ -4,10 +4,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 
-import {
-  useRecoilValue,
-  useRecoilState,
-} from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -25,7 +22,7 @@ import {
   fvTable,
   pmtTable,
   rateTable,
-  periodsTable,
+  periodsTable
 } from '../../helpers';
 
 import {
@@ -35,32 +32,36 @@ import {
   calculateState,
   presentValueState,
   tableDataState,
-  futureValueState,
+  futureValueState
 } from '../../store';
 
 const useStyles = makeStyles({
   table: {
     width: '260px !important',
     margin: '0 auto',
-    border: '1px solid black',
-
+    border: '1px solid black'
   },
   tContainer: {
     background: 'white',
     marginTop: '50px',
-    paddingBottom: '50px',
+    paddingBottom: '50px'
   },
   rowHeader: {
     border: '1px solid black',
-    background: '#4C1A57',
+    background: '#4C1A57'
   },
   tCell: {
-    border: '1px solid black',
-  },
+    border: '1px solid black'
+  }
 });
 
 const createData = (period, pv, pmt, interest, fv, protein) => ({
-  period, pv, pmt, interest, fv, protein,
+  period,
+  pv,
+  pmt,
+  interest,
+  fv,
+  protein
 });
 
 const rows = [];
@@ -84,32 +85,65 @@ export default function BasicTable({ option }) {
   let tableDataObj;
 
   switch (option) {
-    case "PV":
-      tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+    case 'PV':
+      tableDataObj = pvTable(
+        periods,
+        parseFloat(beginningBalance.split(',').join('')),
+        parseFloat(payment),
+        convertToDecimal(interest)
+      );
       break;
-    case "FV":
-      tableDataObj = fvTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+    case 'FV':
+      tableDataObj = fvTable(
+        periods,
+        parseFloat(presentVal.split(',').join('')),
+        parseFloat(payment),
+        convertToDecimal(interest)
+      );
       break;
-    case "PMT":
-      tableDataObj = pmtTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(beginningBalance.split(',').join('')), convertToDecimal(interest));
+    case 'PMT':
+      tableDataObj = pmtTable(
+        periods,
+        parseFloat(presentVal.split(',').join('')),
+        parseFloat(beginningBalance.split(',').join('')),
+        convertToDecimal(interest)
+      );
       break;
-    case "Rate":
-      tableDataObj = rateTable(periods, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(calculated));
+    case 'Rate':
+      tableDataObj = rateTable(
+        periods,
+        parseFloat(presentVal.split(',').join('')),
+        parseFloat(payment),
+        convertToDecimal(calculated)
+      );
       break;
-    case "Periods":
-      tableDataObj = periodsTable(beginningBalance, parseFloat(presentVal.split(',').join('')), parseFloat(payment), convertToDecimal(interest), futureVal);
+    case 'Periods':
+      tableDataObj = periodsTable(
+        beginningBalance,
+        parseFloat(presentVal.split(',').join('')),
+        parseFloat(payment),
+        convertToDecimal(interest),
+        futureVal
+      );
       break;
     default:
-      tableDataObj = pvTable(periods, parseFloat(beginningBalance.split(',').join('')), parseFloat(payment), convertToDecimal(interest));
+      tableDataObj = pvTable(
+        periods,
+        parseFloat(beginningBalance.split(',').join('')),
+        parseFloat(payment),
+        convertToDecimal(interest)
+      );
   }
 
   tableDataObj.Period.forEach((item, idx) => {
     rows.push(
-      createData(tableDataObj.Period[idx],
+      createData(
+        tableDataObj.Period[idx],
         `$${tableDataObj.PV[idx]}`,
         `$${tableDataObj.PMT[idx]}`,
         `$${tableDataObj.Interest[idx]}`,
-        `$${tableDataObj.FV[idx]}`),
+        `$${tableDataObj.FV[idx]}`
+      )
     );
   });
 
@@ -134,21 +168,25 @@ export default function BasicTable({ option }) {
           <TableHead>
             <TableRow className={classes.rowHeader}>
               {headers.map((item) => (
-                <TableCell key={item} style={{ color: 'white', fontWeight: 'bold' }}>{item}</TableCell>
+                <TableCell key={item} style={{ color: 'white', fontWeight: 'bold' }}>
+                  {item}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {tableData.map((row) => (
               <TableRow key={row.name}>
-                {headers.map((item) => {
-                  if (item === "Period") {
+                {headers.map((item, idx) => {
+                  if (item === 'Period') {
                     return (
                       <TableCell className={classes.tCell}>{row[item.toLowerCase()]}</TableCell>
                     );
                   }
                   return (
-                    <TableCell className={classes.tCell}>{numberWithCommas(row[item.toLowerCase()])}</TableCell>
+                    <TableCell className={classes.tCell} key={idx}>
+                      {numberWithCommas(row[item.toLowerCase()])}
+                    </TableCell>
                   );
                 })}
               </TableRow>

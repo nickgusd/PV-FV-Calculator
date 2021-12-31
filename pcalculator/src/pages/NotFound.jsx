@@ -1,20 +1,20 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const headerStyle = {
   textAlign: 'center',
   fontSize: '200px',
   color: '#1C5253',
-  marginBottom: '0px',
+  marginBottom: '0px'
 };
 
 const header2Style = {
   ...headerStyle,
   fontSize: '20px',
   marginBottom: '20px',
-  marginTop: '0px',
+  marginTop: '0px'
 };
 
 const buttonStyle = {
@@ -24,21 +24,23 @@ const buttonStyle = {
   color: 'white',
   height: '40px',
   fontWeight: 'bold',
-  borderRadius: '4px',
+  borderRadius: '4px'
 };
 
 export default function NotFound() {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push("/");
+    history.push('/');
   };
 
   return (
     <div>
       <h1 style={headerStyle}>404</h1>
       <h2 style={header2Style}>Page not found!</h2>
-      <button onClick={handleClick} style={buttonStyle}>Return Home</button>
+      <button onClick={handleClick} style={buttonStyle}>
+        Return Home
+      </button>
     </div>
   );
 }

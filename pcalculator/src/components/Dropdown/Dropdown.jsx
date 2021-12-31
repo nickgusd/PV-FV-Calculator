@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { Calculation } from "./Dropdown";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { Calculation } from './Dropdown';
 
 export default function DropDown({ onChange, options }) {
   const useStyles = makeStyles((theme) => ({
@@ -12,11 +12,11 @@ export default function DropDown({ onChange, options }) {
       margin: theme.spacing(1),
       minWidth: 120,
       // eslint-disable-next-line no-dupe-keys
-      margin: "0 auto",
+      margin: '0 auto'
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
+      marginTop: theme.spacing(2)
+    }
   }));
 
   const classes = useStyles();
@@ -28,9 +28,12 @@ export default function DropDown({ onChange, options }) {
           onChange={onChange}
           displayEmpty
           className={classes.selectEmpty}
-          inputProps={{ "aria-label": "Without label" }}
-        >
-          {options.map((item) => <MenuItem value={item}>{item}</MenuItem>)}
+          inputProps={{ 'aria-label': 'Without label' }}>
+          {options.map((item, idx) => (
+            <MenuItem value={item} key={idx}>
+              {item}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Calculation>
