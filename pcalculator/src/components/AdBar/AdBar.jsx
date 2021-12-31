@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Wrapper, Image } from './AdBar';
 
-export default function AdBar() {
+function AdBar() {
   return (
     <Wrapper>
       <Image
@@ -12,3 +12,5 @@ export default function AdBar() {
     </Wrapper>
   );
 }
+
+export default AdBar;

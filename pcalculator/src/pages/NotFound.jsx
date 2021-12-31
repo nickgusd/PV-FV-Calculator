@@ -11,7 +11,8 @@ const headerStyle = {
 };
 
 const header2Style = {
-  ...headerStyle,
+  textAlign: 'center',
+  color: '#1C5253',
   fontSize: '20px',
   marginBottom: '20px',
   marginTop: '0px'
