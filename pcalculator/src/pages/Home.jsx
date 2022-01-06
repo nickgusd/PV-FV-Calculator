@@ -25,9 +25,9 @@ export default function Home() {
 
   return (
     <Wrapper isCalculated={isCalculated}>
-      {isDesktop ? <Sidebar /> : null}
+      {isDesktop && <Sidebar />}
       <Container />
-      {isDesktop ? <AdBar /> : null}
+      {isDesktop && <AdBar />}
     </Wrapper>
   );
 }
