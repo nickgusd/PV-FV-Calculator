@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import { useRecoilValue } from 'recoil';
 
@@ -12,22 +13,15 @@ import { Wrapper } from '../components/Main/Main';
 
 export default function Home() {
   const isCalculated = useRecoilValue(isCalculatedState);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth < 1450);
-
-  const updateMedia = () => {
-    setIsDesktop(window.innerWidth > 1450);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', updateMedia);
-    return () => window.removeEventListener('resize', updateMedia);
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1024px)'
   });
 
   return (
     <Wrapper isCalculated={isCalculated}>
-      {isDesktop && <Sidebar />}
+      {isDesktopOrLaptop && <Sidebar />}
       <Container />
-      {isDesktop && <AdBar />}
+      {isDesktopOrLaptop && <AdBar />}
     </Wrapper>
   );
 }
