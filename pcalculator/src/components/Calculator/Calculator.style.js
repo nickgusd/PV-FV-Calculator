@@ -28,6 +28,9 @@ export const CalcWrapper = styled.div`
   border-radius: 6px;
   background: #1c5253;
   color: white;
+  @media (max-width: 432px) {
+    width: auto;
+  }
 `;
 
 export const Container = styled.div`
@@ -57,8 +60,6 @@ export const Input = styled.input`
 export const Label = styled.label``;
 
 export const InputContainer = styled.div`
-  width: 15vw;
-
   display: flex;
   flex-direction: column;
   align-items: center;
