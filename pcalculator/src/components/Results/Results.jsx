@@ -20,14 +20,14 @@ export default function Results({ calculation, option, isCalculated }) {
       <Container>
         {choices.map((item) => {
           if (item === option && isCalculated) {
-            if (option === 'Rate' && parseInt(calculation) > 0) {
+            if (option === 'Rate') {
               return (
                 <b>
                   {option} = {calculation.toFixed(3)}%
                 </b>
               );
             }
-            if (option === 'Periods' && parseInt(calculation) > 0) {
+            if (option === 'Periods') {
               return (
                 <b>
                   {option} = {calculation.toFixed(3)}
@@ -39,6 +39,7 @@ export default function Results({ calculation, option, isCalculated }) {
             }
             return (
               <b>
+                {console.log('lol', calculation)}
                 {option} = $ {numberWithCommas(calculation)}
               </b>
             );
