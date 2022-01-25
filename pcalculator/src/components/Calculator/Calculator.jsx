@@ -174,27 +174,32 @@ export default function Calculator({ option, value }) {
     PV: {
       functions: [handleChangeFV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [futureValue, interest, payment, periods],
-      label: ['Future Value', 'Interest Rate', 'Payment', 'Periods']
+      label: ['Future Value', 'Interest Rate', 'Payment', 'Periods'],
+      placeholder: ['-40000', '.02', '-500', '10']
     },
     FV: {
       functions: [handleChangePV, handleChangeInterest, handleChangePayment, handleChangePeriods],
       value: [presentValue, interest, payment, periods],
-      label: ['Present Value', 'Interest Rate', 'Payment', 'Periods']
+      label: ['Present Value', 'Interest Rate', 'Payment', 'Periods'],
+      placeholder: ['20000', '.06', '-500', '10']
     },
     PMT: {
       functions: [handleChangeFV, handleChangePV, handleChangeInterest, handleChangePeriods],
       value: [futureValue, presentValue, interest, periods],
-      label: ['Future Value', 'Present Value', 'Interest Rate', 'Periods']
+      label: ['Future Value', 'Present Value', 'Interest Rate', 'Periods'],
+      placeholder: ['-10000', '20000', '.06', '10']
     },
     Rate: {
       functions: [handleChangeFV, handleChangePV, handleChangePayment, handleChangePeriods],
       value: [futureValue, presentValue, payment, periods],
-      label: ['Future Value', 'Present Value', 'Payment', 'Periods']
+      label: ['Future Value', 'Present Value', 'Payment', 'Periods'],
+      placeholder: ['-10000', '20000', '-500', '10']
     },
     Periods: {
       functions: [handleChangeInterest, handleChangePayment, handleChangePV, handleChangeFV],
       value: [interest, payment, presentValue, futureValue],
-      label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value']
+      label: ['Interest Rate', 'Payment', 'Present Value', 'Future Value'],
+      placeholder: ['.06', '-500', '20000', '-10000']
     }
   };
 
@@ -215,6 +220,7 @@ export default function Calculator({ option, value }) {
                         id={test[item]}
                         value={test[item].value[index]}
                         onChange={thing}
+                        placeholder={test[item].placeholder ? test[item].placeholder[index] : null}
                       />
                     </>
                   ))}
