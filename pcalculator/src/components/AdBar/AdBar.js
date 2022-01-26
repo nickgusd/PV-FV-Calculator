@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   position: fixed;
   overflow: auto;
   right: 0px;
+  top: 50px;
 `;
 
 export const Image = styled.img`

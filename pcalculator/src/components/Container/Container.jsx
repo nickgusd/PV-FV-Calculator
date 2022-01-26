@@ -9,6 +9,8 @@ import Calculator from '../Calculator/Calculator';
 import Dropdown from '../Dropdown/Dropdown.jsx';
 import BasicTable from '../Table/Table';
 import Error from '../Error/Error';
+import Info from '../Info/Info';
+
 import { ContainerDiv } from './Container';
 
 export default function Container() {
@@ -33,6 +35,7 @@ export default function Container() {
         <Error message="Please Enter Numeric Values!" />
       ) : null}
       {IsCalculatedState ? <BasicTable option={type} /> : null}
+      <Info option={type} />
     </ContainerDiv>
   );
 }
