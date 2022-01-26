@@ -4,8 +4,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { useRecoilValue } from 'recoil';
-import { optionState } from '../../store';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { contentState, optionState } from '../../store';
 import calculations from '../../config/calculations.json';
 
 import { Container, Tab, Wrapper, StyledLink } from './Sidebar';
@@ -13,26 +13,32 @@ import { Container, Tab, Wrapper, StyledLink } from './Sidebar';
 export default function Sidebar() {
   const [active, setActive] = useState([]);
   const readOption = useRecoilValue(optionState);
+  const setContent = useSetRecoilState(contentState);
 
   const arr = [
     {
       type: 'Present Value',
+      calc: 'PV',
       active: true
     },
     {
       type: 'Future Value',
+      calc: 'FV',
       active: false
     },
     {
       type: 'Payments',
+      calc: 'PMT',
       active: false
     },
     {
       type: 'Interest',
+      calc: 'Rate',
       active: false
     },
     {
       type: 'Periods',
+      calc: 'Periods',
       active: false
     }
   ];
@@ -55,9 +61,11 @@ export default function Sidebar() {
 
   const handleClick = (event) => {
     const type = event.target.innerHTML;
+
     arr.forEach((item, idx) => {
       if (item.type === type) {
         item.active = true;
+        setContent(item.calc);
       } else {
         item.active = false;
       }
