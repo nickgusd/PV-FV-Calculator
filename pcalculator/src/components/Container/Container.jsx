@@ -3,20 +3,24 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { optionState, isCalculatedState, calculateState } from '../../store';
+import { optionState, isCalculatedState, calculateState, contentState } from '../../store';
 
 import Calculator from '../Calculator/Calculator';
 import Dropdown from '../Dropdown/Dropdown.jsx';
 import BasicTable from '../Table/Table';
 import Error from '../Error/Error';
+import Info from '../Info/Info';
+
 import { ContainerDiv } from './Container';
 
 export default function Container() {
   const [type, setType] = useRecoilState(optionState);
+  const [content, setContent] = useRecoilState(contentState);
 
   const handleChange = (event) => {
     const { value } = event.target;
     setType(value);
+    setContent(value);
   };
 
   const IsCalculatedState = useRecoilValue(isCalculatedState);
@@ -33,6 +37,7 @@ export default function Container() {
         <Error message="Please Enter Numeric Values!" />
       ) : null}
       {IsCalculatedState ? <BasicTable option={type} /> : null}
+      <Info option={content} />
     </ContainerDiv>
   );
 }

@@ -13,6 +13,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   position: fixed;
   width: 200px;
+  top: 50px;
 `;
 
 export const StyledLink = styled(Link)`

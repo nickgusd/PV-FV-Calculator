@@ -44,3 +44,8 @@ export const tableDataState = atom({
   key: 'data',
   default: []
 });
+
+export const contentState = atom({
+  key: 'content',
+  default: 'PV'
+});

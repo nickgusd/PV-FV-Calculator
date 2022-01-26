@@ -1,0 +1,7 @@
+{
+    "PV": "Find the present value of a future sum of money. The present value calculator answers the question, What do I need to invest today to have a specific sum of money at a future date? You can think of present value as the amount you need to save now to have a certain amount of money in the future. The present value formula applies a discount to your future value amount, deducting interest earned to find the present value in today's money.",
+    "FV": "The future value formula is FV=PV(1+i)n, where the present value PV increases for each period into the future by a factor of 1 + i. The future value calculator uses multiple variables in the FV calculation: The present value sum, Number of time periods, typically years, Interest rate, Compounding frequency, Cash flow payments, Growing annuities and perpetuities, The future value of a sum of money is the value of the current sum at a future date., You can use this future value calculator to determine how much your investment will be worth at some point in the future due to accumulated interest and potential cash flows.",
+    "Rate": "Interest Rate",
+    "PMT": "Payment",
+    "Periods": "Periods"
+}

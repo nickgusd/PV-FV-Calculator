@@ -5,5 +5,5 @@ export const Wrapper = styled.div`
   height: Calc(100vh - 50px);
   display: flex;
   flex-direction: row;
-  overflow: ${(props) => (props.isCalculated ? 'auto' : 'hidden')};
+  // overflow: ${(props) => (props.isCalculated ? 'auto' : 'hidden')};
 `;

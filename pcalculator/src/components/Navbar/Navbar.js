@@ -10,6 +10,8 @@ export const Nav = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: fixed;
+  z-index: 1000;
 `;
 
 export const Title = styled.h1`
