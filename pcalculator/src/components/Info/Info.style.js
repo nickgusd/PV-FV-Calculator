@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
   width: 432px;
 `;
 
-export const TextContainer = styled.div`
-  overflow: auto !important;
-`;
+export const Header = styled.div``;
+
+export const Body = styled.div``;

@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useRecoilValue } from 'recoil';
 import { optionState } from '../../store';
+import calculations from '../../config/calculations.json';
 
 import { Container, Tab, Wrapper, StyledLink } from './Sidebar';
 
@@ -37,19 +38,7 @@ export default function Sidebar() {
   ];
 
   const changeType = (option) => {
-    if (option === 'PV') {
-      return 'Present Value';
-    }
-    if (option === 'FV') {
-      return 'Future Value';
-    }
-    if (option === 'PMT') {
-      return 'Payments';
-    }
-    if (option === 'Periods') {
-      return 'Periods';
-    }
-    return 'Interest';
+    return calculations[option];
   };
 
   useEffect(() => {

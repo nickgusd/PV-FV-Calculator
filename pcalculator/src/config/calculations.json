@@ -1,7 +1,7 @@
 {
     "PV": "Present Value",
     "FV": "Future Value",
-    "Rate": "Interest Rate",
-    "PMT": "Payment",
+    "Rate": "Interest",
+    "PMT": "Payments",
     "Periods": "Periods"
 }

@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, TextContainer } from '../Info/Info.style';
+import { Wrapper, Header, Body } from '../Info/Info.style';
 
-import config from '../../config/content.json';
+import calculations from '../../config/calculations.json';
+import content from '../../config/content.json';
 
 export default function Info({ option }) {
   return (
     <Wrapper>
-      <TextContainer>{config[option]}</TextContainer>
+      <Header>
+        <h2>{calculations[option]}</h2>
+      </Header>
+      <Body>
+        <p>{content[option]}</p>
+      </Body>
     </Wrapper>
   );
 }
