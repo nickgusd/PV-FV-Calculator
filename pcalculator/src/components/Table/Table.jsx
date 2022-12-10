@@ -168,7 +168,7 @@ export default function BasicTable({ option }) {
 
   if (tableData.length > 0) {
     return (
-      <TableContainer component={Paper} className={classes.tContainer}>
+      <TableContainer className={classes.tContainer}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow className={classes.rowHeader}>
