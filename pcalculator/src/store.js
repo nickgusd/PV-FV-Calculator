@@ -49,3 +49,18 @@ export const contentState = atom({
   key: 'content',
   default: 'PV'
 });
+
+export const ratesState = atom({
+  key: 'rate',
+  default: []
+});
+
+export const exchangeOptionsState = atom({
+  key: 'exchange',
+  default: []
+});
+
+export const selectedState = atom({
+  key: 'selected',
+  default: null
+});

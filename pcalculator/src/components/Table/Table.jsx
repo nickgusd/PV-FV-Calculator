@@ -22,7 +22,8 @@ import {
   fvTable,
   pmtTable,
   rateTable,
-  periodsTable
+  periodsTable,
+  toNumber
 } from '../../helpers';
 
 import {
@@ -32,7 +33,9 @@ import {
   calculateState,
   presentValueState,
   tableDataState,
-  futureValueState
+  futureValueState,
+  ratesState,
+  exchangeOptionsState
 } from '../../store';
 
 const useStyles = makeStyles({
@@ -79,6 +82,8 @@ export default function BasicTable({ option }) {
   const payment = useRecoilValue(paymentState);
   const calculated = useRecoilValue(calculateState);
   const futureVal = useRecoilValue(futureValueState);
+  const rates = useRecoilValue(ratesState);
+  const options = useRecoilValue(exchangeOptionsState);
 
   let tableDataObj;
 
@@ -151,6 +156,8 @@ export default function BasicTable({ option }) {
     setTableData(data);
   }, []);
 
+  const exchange = rates[options.indexOf('USD')];
+
   if (option === 'Rate' && calculated === 1) {
     return null;
   }
@@ -183,7 +190,7 @@ export default function BasicTable({ option }) {
                   }
                   return (
                     <TableCell className={classes.tCell} key={idx}>
-                      {numberWithCommas(row[item.toLowerCase()])}
+                      {numberWithCommas((toNumber(row[item.toLowerCase()]) / exchange).toFixed(2))}
                     </TableCell>
                   );
                 })}
