@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { ratesState, exchangeOptionsState, selectedState } from '../../store';
 
-import { Container, RatesWrapper, List, Caption } from './ExchangeRate';
+import { Container, RatesWrapper, List, Caption, Currency, Rate } from './ExchangeRate';
 import DropDown from '../Dropdown/Dropdown.jsx';
 import Loader from '../Loader/Loader';
 
@@ -40,29 +40,32 @@ export const ExchangeRate = () => {
     setSelected(event.target.value);
   };
 
-  const compare = rates[options.indexOf('USD')];
-
-  console.log('compare', compare);
+  const exchangeRate = rates[options.indexOf('USD')];
 
   return (
     <Container>
       <h2> Exchange Rates</h2>
       <RatesWrapper>
-        <DropDown options={options} onChange={handleChange} />
+        <DropDown options={options} onChange={handleChange} selected={selected || 'USD'} />
         <List>
           {isLoading && <Loader />}
           {!isLoading &&
             options.map((item, idx) => (
-              <div key={item}>
-                {item} {rates[idx].toFixed(2)}
-              </div>
+              <Currency key={item}>
+                <div>{item}</div> <Rate>{rates[idx].toFixed(2)}</Rate>
+              </Currency>
             ))}
         </List>
       </RatesWrapper>
-      {selected && !isLoading && <Caption>{selected + ' to ' + 'USD'}</Caption>}
       {selected && !isLoading && (
         <Caption>
-          {rates[options.indexOf(selected)]} to {'$' + compare.toFixed(2)}
+          {rates[options.indexOf(selected)] +
+            ' ' +
+            selected +
+            ' to ' +
+            '$ ' +
+            exchangeRate.toFixed(2) +
+            ' USD'}
         </Caption>
       )}
     </Container>

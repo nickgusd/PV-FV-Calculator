@@ -7,14 +7,11 @@ export const Container = styled.div`
   background: #1c5253;
   min-height: 100vw;
   position: fixed;
-  //   margin-top: 40px;
   left: Calc(100% - 280px);
-  //   overflow: auto;
   color: white;
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  //   align-items: center;
 `;
 
 export const RatesWrapper = styled.div`
@@ -34,4 +31,14 @@ export const List = styled.div`
 export const Caption = styled.div`
   padding: 8px;
   text-align: center;
+`;
+
+export const Currency = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+`;
+
+export const Rate = styled.span`
+  color: green;
 `;

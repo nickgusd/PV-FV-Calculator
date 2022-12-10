@@ -16,20 +16,18 @@ import { ContainerDiv } from './Container';
 export default function Container() {
   const [type, setType] = useRecoilState(optionState);
   // const [content, setContent] = useRecoilState(contentState);
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setType(value);
-    // setContent(value);
-  };
-
   const IsCalculatedState = useRecoilValue(isCalculatedState);
   const calculation = useRecoilValue(calculateState);
   const options = ['PV', 'FV', 'PMT', 'Rate', 'Periods'];
 
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setType(value);
+  };
+
   return (
     <ContainerDiv>
-      <Dropdown onChange={handleChange} options={options} />
+      <Dropdown onChange={handleChange} options={options} selected={type} />
       <Calculator option={type} value={options} />
       {calculation === 'N.aN' || calculation.toString() === 'NaN' ? (
         <Error message="Please Enter Numeric Values!" />

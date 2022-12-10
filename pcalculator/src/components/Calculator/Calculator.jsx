@@ -3,7 +3,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
@@ -27,9 +27,9 @@ import {
   periodsState,
   paymentState,
   calculateState,
-  isCalculatedState,
-  ratesState,
-  exchangeOptionsState
+  isCalculatedState
+  // ratesState,
+  // exchangeOptionsState
 } from '../../store';
 
 import {
@@ -58,10 +58,6 @@ export default function Calculator({ option, value }) {
   const [payment, setPayment] = useRecoilState(paymentState);
   const [calculate, setCalculate] = useRecoilState(calculateState);
   const [isCalculated, setIsCalculated] = useRecoilState(isCalculatedState);
-  // const rates = useRecoilValue(ratesState);
-  // const options = useRecoilValue(exchangeOptionsState);
-
-  // const compare = rates[options.indexOf('USD')];
 
   useEffect(() => {
     setFutureValue('');

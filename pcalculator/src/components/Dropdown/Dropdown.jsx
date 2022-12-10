@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Calculation } from './Dropdown';
 
-export default function DropDown({ onChange, options }) {
+export default function DropDown({ onChange, options, selected }) {
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -26,9 +26,11 @@ export default function DropDown({ onChange, options }) {
       <FormControl className={classes.formControl}>
         <Select
           onChange={onChange}
+          labelId="demo-simple-select-standard-label"
+          label={selected}
           displayEmpty
-          className={classes.selectEmpty}
-          inputProps={{ 'aria-label': 'Without label' }}>
+          renderValue={() => selected}
+          className={classes.selectEmpty}>
           {options.map((item, idx) => (
             <MenuItem value={item} key={idx}>
               {item}

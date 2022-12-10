@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 200px;
@@ -16,7 +15,7 @@ export const Wrapper = styled.div`
   top: 50px;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.div`
   text-decoration: none;
 
   &:focus,

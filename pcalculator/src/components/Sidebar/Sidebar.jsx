@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import { contentState, optionState } from '../../store';
 import calculations from '../../config/calculations.json';
 
@@ -14,6 +14,7 @@ export default function Sidebar() {
   const [active, setActive] = useState([]);
   const readOption = useRecoilValue(optionState);
   const setContent = useSetRecoilState(contentState);
+  const [calc, setCalc] = useRecoilState(optionState);
 
   const arr = [
     {
@@ -62,6 +63,8 @@ export default function Sidebar() {
   const handleClick = (event) => {
     const type = event.target.innerHTML;
 
+    setCalc(arr[arr.findIndex((item) => item.type === type)].calc);
+
     arr.forEach((item, idx) => {
       if (item.type === type) {
         item.active = true;
@@ -78,7 +81,7 @@ export default function Sidebar() {
       <Container>
         <Wrapper>
           {active.map((item, idx) => (
-            <StyledLink to={`/?calculation=${item.type.toLowerCase()}`} key={idx}>
+            <StyledLink key={idx}>
               <Tab onClick={handleClick} active={item.active}>
                 {item.type}
               </Tab>
@@ -92,7 +95,7 @@ export default function Sidebar() {
     <Container>
       <Wrapper>
         {arr.map((item, idx) => (
-          <StyledLink to={`/?calculation=${item.type.toLowerCase()}`} key={idx}>
+          <StyledLink key={idx}>
             <Tab onClick={handleClick} active={item.active}>
               {item.type}
             </Tab>
