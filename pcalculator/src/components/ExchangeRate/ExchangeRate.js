@@ -30,3 +30,8 @@ export const RatesWrapper = styled.div`
 export const List = styled.div`
   padding: 14px;
 `;
+
+export const Caption = styled.div`
+  padding: 8px;
+  text-align: center;
+`;

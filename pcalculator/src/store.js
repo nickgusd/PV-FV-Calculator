@@ -59,3 +59,8 @@ export const exchangeOptionsState = atom({
   key: 'exchange',
   default: []
 });
+
+export const selectedState = atom({
+  key: 'selected',
+  default: null
+});

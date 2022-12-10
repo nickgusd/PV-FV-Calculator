@@ -3,13 +3,25 @@
 /* eslint-disable radix */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { numberWithCommas } from '../../helpers';
+import { ratesState, selectedState, exchangeOptionsState } from '../../store';
 
 import { Container } from './Results';
 
-import { numberWithCommas } from '../../helpers';
-
 export default function Results({ calculation, option, isCalculated }) {
+  const selected = useRecoilValue(selectedState);
+  const rate = useRecoilValue(ratesState);
+  const options = useRecoilValue(exchangeOptionsState);
   const choices = ['PV', 'FV', 'PMT', 'Rate', 'Periods'];
+
+  // const currentRate = rate[options.indexOf(selected)];
+  const usd = rate[options.indexOf('USD')];
+
+  // console.log('selected', selected);
+  // console.log('rate', rate);
+  // console.log('options', options);
+  // console.log('currentRate', currentRate);
 
   if (option === 'Rate' && calculation === 1) {
     return null;
@@ -39,8 +51,7 @@ export default function Results({ calculation, option, isCalculated }) {
             }
             return (
               <b>
-                {console.log('lol', calculation)}
-                {option} = $ {numberWithCommas(calculation)}
+                {option} = {numberWithCommas((calculation / usd).toFixed(2))} {selected || 'USD'}
               </b>
             );
           }

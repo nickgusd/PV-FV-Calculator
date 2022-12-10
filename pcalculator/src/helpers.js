@@ -370,3 +370,13 @@ export const getNPER = (rate, payment, present, future, type) => {
   const den = present * rate + payment * (1 + rate * type);
   return Math.log(num / den) / Math.log(1 + rate);
 };
+
+export const toNumber = (str) => {
+  const nums = '.0123456789';
+  return Number(
+    str
+      .split('')
+      .filter((item) => nums.includes(item))
+      .join('')
+  );
+};
