@@ -8,6 +8,7 @@ import { isCalculatedState } from '../store';
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
 import Container from '../components/Container/Container.jsx';
 import AdBar from '../components/AdBar/AdBar.jsx';
+import { ExchangeRate } from '../components/ExchangeRate/ExhangeRate';
 
 import { Wrapper } from '../components/Main/Main';
 
@@ -22,6 +23,7 @@ export default function Home() {
       {isDesktopOrLaptop && <Sidebar />}
       <Container />
       {isDesktopOrLaptop && <AdBar />}
+      {isDesktopOrLaptop && <ExchangeRate />}
     </Wrapper>
   );
 }
